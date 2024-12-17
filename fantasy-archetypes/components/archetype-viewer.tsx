@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { Search, Twitter } from 'lucide-react'
+import { Twitter } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { nodes, ArchetypeNode } from '@/lib/mockData'
@@ -11,7 +10,7 @@ import { nodes, ArchetypeNode } from '@/lib/mockData'
 type VisualizationType = 'scatter' | 'kdtree' | 'voronoi' | 'mst'
 
 export default function ArchetypeViewer() {
-  const [searchQuery, setSearchQuery] = useState('darth vader')
+//   const [searchQuery, setSearchQuery] = useState('darth vader')
   const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null)
   const [hoveredArchetype, setHoveredArchetype] = useState<ArchetypeNode | null>(null)
   const [visualizationType, setVisualizationType] = useState<VisualizationType>('scatter')
