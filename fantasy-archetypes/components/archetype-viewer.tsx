@@ -1,13 +1,10 @@
 'use client'
 
 import { useState, useCallback, useRef, useEffect } from 'react'
-import { Twitter } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { ArchetypeNode } from '@/lib/data'
-
-type VisualizationType = 'scatter' | 'kdtree' | 'voronoi' | 'mst'
 
 type Props = {
     nodeData: ArchetypeNode[]
@@ -17,7 +14,7 @@ export default function ArchetypeViewer({ nodeData }: Props) {
     //   const [searchQuery, setSearchQuery] = useState('darth vader')
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null)
     const [hoveredArchetype, setHoveredArchetype] = useState<ArchetypeNode | null>(null)
-    const [visualizationType, setVisualizationType] = useState<VisualizationType>('scatter')
+    // const [visualizationType, setVisualizationType] = useState<VisualizationType>('scatter')
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     const handleNodeHover = useCallback((node: ArchetypeNode | null) => {
@@ -70,7 +67,7 @@ export default function ArchetypeViewer({ nodeData }: Props) {
         // TODO: Implement other visualization types (KD Tree, Voronoi, MST)
         // This would require additional logic and potentially external libraries
 
-    }, [hoveredArchetype, visualizationType, nodeData])
+    }, [hoveredArchetype, nodeData])
 
     const handleCanvasMouseMove = useCallback((event: React.MouseEvent<HTMLCanvasElement>) => {
         const canvas = canvasRef.current
