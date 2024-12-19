@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import ArchetypeViewer from '@/components/archetype-viewer'
-import { fantasyArchetypes, scientificFields } from '@/lib/data'
+import { ArchetypeNode, fantasyArchetypes, scientificFields } from '@/lib/data'
+import GraphCardInformation from '@/components/GraphCardInformation'
 
 
 const visualizations = [
@@ -17,6 +18,8 @@ const visualizations = [
 export default function VisualizationSwitcher() {
     const [activeViz, setActiveViz] = useState(visualizations[0])
     const [sidebarOpen, setSidebarOpen] = useState(true)
+    const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
+    const [visualizationType, setVisualizationType] = useState<string>('scatter')
 
     return (
         <div className="relative h-screen bg-background overflow-hidden">
@@ -118,7 +121,26 @@ export default function VisualizationSwitcher() {
                 </div>
                 <div className="p-6 h-[calc(100vh-5rem)] overflow-auto">
                     <div className="h-full w-full">
-                        <ArchetypeViewer nodeData={activeViz.nodeData}/>
+                        <div className="min-h-screen bg-black text-white p-6 relative" >
+                            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                                <ArchetypeViewer nodeData={activeViz.nodeData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} />
+                                <GraphCardInformation selectedArchetype={selectedArchetype} />
+                                <div className="flex flex-wrap gap-2 justify-center">
+                                    <Button
+                                        variant={visualizationType === 'scatter' ? 'default' : 'secondary'}
+                                        onClick={() => setVisualizationType('scatter')}
+                                    >
+                                        Scatter Plot
+                                    </Button>
+                                    <Button
+                                        variant={visualizationType === 'kdtree' ? 'default' : 'secondary'}
+                                        onClick={() => setVisualizationType('kdtree')}
+                                    >
+                                        Heatmap
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>

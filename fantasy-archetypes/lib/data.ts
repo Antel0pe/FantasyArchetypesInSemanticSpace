@@ -6,6 +6,7 @@ export interface ArchetypeNode {
     color: string;
     x: number;
     y: number;
+    originalEmbedding?: number[];
 }
 
 
