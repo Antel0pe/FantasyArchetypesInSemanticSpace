@@ -6,20 +6,18 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import ArchetypeViewer from '@/components/archetype-viewer'
-import { ArchetypeNode, fantasyArchetypes, scientificFields } from '@/lib/data'
+import { ArchetypeNode, fantasyArchetypesData, scientificFieldsData } from '@/lib/data'
 import GraphCardInformation from '@/components/GraphCardInformation'
+import { availableVisualizations } from '@/lib/availableVisualizationOptions'
+import GraphViewOptions from '@/components/GraphViewOptions'
 
 
-const visualizations = [
-    { name: 'Scientific Fields', icon: Microscope, nodeData: scientificFields },
-    { name: 'Fantasy Archetypes', icon: Wand, nodeData: fantasyArchetypes },
-]
 
 export default function VisualizationSwitcher() {
-    const [activeViz, setActiveViz] = useState(visualizations[0])
+    const [activeViz, setActiveViz] = useState(availableVisualizations[0])
     const [sidebarOpen, setSidebarOpen] = useState(true)
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
-    const [visualizationType, setVisualizationType] = useState<string>('scatter')
+    
 
     return (
         <div className="relative h-screen bg-background overflow-hidden">
@@ -45,7 +43,7 @@ export default function VisualizationSwitcher() {
                                 Visualizations
                             </h2>
                             <div className="space-y-1">
-                                {visualizations.map((viz) => (
+                                {availableVisualizations.map((viz) => (
                                     <Button
                                         key={viz.name}
                                         variant="ghost"
@@ -125,20 +123,7 @@ export default function VisualizationSwitcher() {
                             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                                 <ArchetypeViewer nodeData={activeViz.nodeData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} />
                                 <GraphCardInformation selectedArchetype={selectedArchetype} />
-                                <div className="flex flex-wrap gap-2 justify-center">
-                                    <Button
-                                        variant={visualizationType === 'scatter' ? 'default' : 'secondary'}
-                                        onClick={() => setVisualizationType('scatter')}
-                                    >
-                                        Scatter Plot
-                                    </Button>
-                                    <Button
-                                        variant={visualizationType === 'kdtree' ? 'default' : 'secondary'}
-                                        onClick={() => setVisualizationType('kdtree')}
-                                    >
-                                        Heatmap
-                                    </Button>
-                                </div>
+                                <GraphViewOptions availableVisualizationOptions={activeViz.availableVisualizations} />
                             </div>
                         </div>
                     </div>
