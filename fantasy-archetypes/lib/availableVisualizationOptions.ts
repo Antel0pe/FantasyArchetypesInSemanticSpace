@@ -1,9 +1,9 @@
 import { Microscope, Wand } from "lucide-react";
-import { scientificFieldsData, fantasyArchetypesData, ArchetypeNode } from "./data";
+import { scientificFieldsData, fantasyArchetypesData, ArchetypeNode, fantasyArchetypesDataOnEvilVSGoodExternalVSInternal } from "./data";
 
 export enum VisualizationNames {
     ScientificFields = 'Scientific Fields',
-    FantasyArchetypes = 'FantasyArchetypes'
+    FantasyArchetypes = 'Fantasy Archetypes'
 };
 
 
@@ -15,9 +15,7 @@ export enum AvailableGraphVisualizationOptions {
 
 // get all the visualization options for a given visualization 
 export const getAvailableVisualizationsForOption = (data: Partial<Record<AvailableGraphVisualizationOptions, ArchetypeNode[]>>): AvailableGraphVisualizationOptions[] => {
-    return Object.keys(data)
-        .filter((k): k is keyof typeof AvailableGraphVisualizationOptions => k in AvailableGraphVisualizationOptions)
-        .map(k => AvailableGraphVisualizationOptions[k])
+    return Object.keys(data) as AvailableGraphVisualizationOptions[]
 
 }
 
@@ -38,7 +36,19 @@ export const availableVisualizations = [
         name: VisualizationNames.FantasyArchetypes,
         icon: Wand,
         nodeData: {
-            [AvailableGraphVisualizationOptions.Scatter]: fantasyArchetypesData
+            [AvailableGraphVisualizationOptions.Scatter]: fantasyArchetypesData,
+            [AvailableGraphVisualizationOptions.TwoDimensionalPlot]: fantasyArchetypesDataOnEvilVSGoodExternalVSInternal
         },
     },
 ]
+
+const visualizationGraphConfig = {
+    [VisualizationNames.FantasyArchetypes]: {
+        [AvailableGraphVisualizationOptions.TwoDimensionalPlot]: {
+            NegativeXAxisName: 'evil',
+            PositiveXAxisName: 'good',
+            NegativeYValue: 'external power',
+            PositiveYValue: 'internal power',
+        }
+    }
+}

@@ -10,7 +10,805 @@ export interface ArchetypeNode {
 }
 
 
-export const fantasyArchetypesData: ArchetypeNode[] = [{"name":"The Chosen One","description":"A seemingly ordinary person destined for extraordinary things, often marked by prophecy or unique abilities","x":218.5660552979,"y":93.6589508057,"tags":["Harry Potter","Frodo Baggins","Paul Atreides"],"color":"#FF5733","id":"0"},{"name":"The Wise Mentor","description":"An elderly sage who guides the hero with wisdom and sometimes magic","x":216.2848815918,"y":145.3287353516,"tags":["Gandalf","Dumbledore","Obi-Wan Kenobi"],"color":"#FF5733","id":"1"},{"name":"The Dark Lord","description":"A powerful evil being seeking domination or destruction of the world","x":343.2026672363,"y":234.1966247559,"tags":["Sauron","Voldemort","The Night King"],"color":"#FF5733","id":"2"},{"name":"The Loyal Friend","description":"A steadfast companion who supports the hero through their journey","x":197.546295166,"y":126.267364502,"tags":["Samwise Gamgee","Ron Weasley","Chewbacca"],"color":"#FF5733","id":"3"},{"name":"The Warrior Princess","description":"A noble woman who defies traditional roles to become a fierce fighter","x":245.740447998,"y":50.0,"tags":["Eowyn","Xena","Wonder Woman"],"color":"#FF5733","id":"4"},{"name":"The Trickster","description":"A clever and mischievous character who creates chaos but sometimes helps the hero","x":166.2662963867,"y":264.9904174805,"tags":["Loki","Puck","Jack Sparrow"],"color":"#FF5733","id":"5"},{"name":"The Fallen Hero","description":"A once-noble character corrupted by power or tragedy","x":264.3517456055,"y":83.8640136719,"tags":["Anakin Skywalker","Boromir","Arthas Menethil"],"color":"#FF5733","id":"6"},{"name":"The Royal Heir","description":"A legitimate or hidden heir to the throne who must reclaim their birthright","x":204.5517120361,"y":59.6754684448,"tags":["Aragorn","Daenerys Targaryen","Simba"],"color":"#FF5733","id":"7"},{"name":"The Mysterious Stranger","description":"A enigmatic figure with unclear motives who appears at crucial moments","x":142.6921386719,"y":269.3865966797,"tags":["Strider","Tom Bombadil","The Man in Black"],"color":"#FF5733","id":"8"},{"name":"The Evil Advisor","description":"A manipulative counselor who poisons the mind of those in power","x":293.5388793945,"y":269.1989135742,"tags":["Grima Wormtongue","Jafar","Littlefinger"],"color":"#FF5733","id":"9"},{"name":"The Knight Errant","description":"A wandering warrior bound by a personal code of honor","x":299.1335449219,"y":91.346572876,"tags":["The Witcher","Don Quixote","The Mandalorian"],"color":"#FF5733","id":"10"},{"name":"The Child of Prophecy","description":"A young person whose birth or existence is tied to an important prediction","x":193.6342468262,"y":85.8962936401,"tags":["Anakin Skywalker","Rand al'Thor","Azor Ahai"],"color":"#FF5733","id":"11"},{"name":"The Reluctant Hero","description":"Someone who initially refuses the call to adventure but eventually accepts their destiny","x":229.0170288086,"y":80.1286392212,"tags":["Bilbo Baggins","Neo","Luke Skywalker"],"color":"#FF5733","id":"12"},{"name":"The Wise Woman","description":"A powerful female figure who provides guidance through magic or wisdom","x":232.0320892334,"y":218.6385955811,"tags":["Galadriel","Minerva McGonagall","Moiraine Damodred"],"color":"#FF5733","id":"13"},{"name":"The Beast Master","description":"A character with a special connection to animals or magical creatures","x":175.105682373,"y":163.0348510742,"tags":["Hagrid","Daine Sarrasri","Eliza Thornberry"],"color":"#FF5733","id":"14"},{"name":"The Dark Witch","description":"A malevolent female magic user who often serves as an antagonist","x":314.8571166992,"y":253.1897125244,"tags":["Bellatrix Lestrange","The White Witch","Maleficent"],"color":"#FF5733","id":"15"},{"name":"The Scholar Mage","description":"A studious magic user who relies on knowledge and research","x":175.593170166,"y":214.9264984131,"tags":["Hermione Granger","Raistlin Majere","Doctor Strange"],"color":"#FF5733","id":"16"},{"name":"The Cursed One","description":"A character suffering from a magical affliction or transformation","x":314.2824707031,"y":178.6775054932,"tags":["Beast","Edward Scissorhands","The Hulk"],"color":"#FF5733","id":"17"},{"name":"The Wild Child","description":"A character raised away from civilization, often by animals or magical beings","x":144.0669708252,"y":162.3541564941,"tags":["Mowgli","Tarzan","Peter Pan"],"color":"#FF5733","id":"18"},{"name":"The Dragon Rider","description":"A warrior who shares a special bond with a dragon mount","x":179.655456543,"y":90.7490539551,"tags":["Eragon","Daenerys Targaryen","Hiccup"],"color":"#FF5733","id":"19"},{"name":"The Shadow Assassin","description":"A deadly killer who operates from the shadows, often with magical abilities","x":282.3618774414,"y":248.5007629395,"tags":["Artemis Entreri","Grey Worm","Azrael"],"color":"#FF5733","id":"20"},{"name":"The Gentle Giant","description":"A physically imposing character with a kind and peaceful nature","x":191.8167724609,"y":152.2978057861,"tags":["Hodor","Hagrid","The BFG"],"color":"#FF5733","id":"21"},{"name":"The Lost Prince","description":"A royal child separated from their heritage who must discover their true identity","x":217.2685699463,"y":50.7092628479,"tags":["Arthur Pendragon","Jon Snow","Perseus"],"color":"#FF5733","id":"22"},{"name":"The Forest Guardian","description":"A mystical protector of nature and wildlife","x":172.8095245361,"y":133.8649597168,"tags":["Radagast","Pocahontas","The Lorax"],"color":"#FF5733","id":"23"},{"name":"The Battle Mage","description":"A warrior who combines martial prowess with magical abilities","x":167.470489502,"y":193.5250091553,"tags":["Gandalf","Elminster","Doctor Strange"],"color":"#FF5733","id":"24"},{"name":"The Shapeshifter","description":"A being capable of changing their physical form at will","x":204.9894714355,"y":272.0228881836,"tags":["Mystique","Beorn","Professor McGonagall"],"color":"#FF5733","id":"25"},{"name":"The Prophecy Keeper","description":"A character who maintains and interprets important predictions about the future","x":235.6864624023,"y":173.634262085,"tags":["Trelawney","The Oracle","Melisandre"],"color":"#FF5733","id":"26"},{"name":"The Dark Knight","description":"A warrior who uses questionable methods to achieve noble goals","x":309.7498168945,"y":111.6669921875,"tags":["Geralt of Rivia","Batman","The Punisher"],"color":"#FF5733","id":"27"},{"name":"The Fairy Godmother","description":"A benevolent magical being who helps those in need","x":224.9034881592,"y":234.0593566895,"tags":["Cinderella's Godmother","The Blue Fairy","Flora, Fauna, and Merryweather"],"color":"#FF5733","id":"28"},{"name":"The Cursed King","description":"A ruler suffering from a magical affliction that affects their kingdom","x":335.6951293945,"y":183.0847320557,"tags":["Beast","Fisher King","Theoden"],"color":"#FF5733","id":"29"},{"name":"The Wild Mage","description":"A magic user whose powers are unpredictable and tied to nature","x":136.1648101807,"y":195.5142669678,"tags":["Daine Sarrasri","Merlin","Storm"],"color":"#FF5733","id":"30"},{"name":"The Immortal Being","description":"A character who cannot die and has lived through countless ages","x":265.2870788574,"y":119.1040267944,"tags":["Wolverine","Elrond","Vandal Savage"],"color":"#FF5733","id":"31"},{"name":"The Elemental Master","description":"A magic user who specializes in controlling one or more natural elements","x":104.6075057983,"y":177.9459533691,"tags":["Avatar Aang","Storm","Toph Beifong"],"color":"#FF5733","id":"32"},{"name":"The Sacred Knight","description":"A warrior devoted to a religious or spiritual cause","x":311.8178710938,"y":80.6584014893,"tags":["Galahad","Templars","Paladins"],"color":"#FF5733","id":"33"},{"name":"The Rebel Leader","description":"A charismatic figure who leads the resistance against tyranny","x":232.8185424805,"y":66.5888366699,"tags":["Princess Leia","Katniss Everdeen","Robin Hood"],"color":"#FF5733","id":"34"},{"name":"The Blood Mage","description":"A practitioner of forbidden magic that requires life force or sacrifice","x":268.3757629395,"y":230.4608612061,"tags":["Morgana","Flemeth","Blood Raven"],"color":"#FF5733","id":"35"},{"name":"The Beast Slayer","description":"A specialized warrior who hunts dangerous monsters","x":307.7963256836,"y":174.2710418701,"tags":["Van Helsing","Beowulf","Monster Hunter"],"color":"#FF5733","id":"36"},{"name":"The Corrupted Priest","description":"A religious figure who has fallen to darkness or evil","x":268.9983520508,"y":187.6210632324,"tags":["High Sparrow","Claude Frollo","Melisandre"],"color":"#FF5733","id":"37"},{"name":"The Dream Walker","description":"Someone who can enter and manipulate dreams","x":134.1853790283,"y":330.3759155273,"tags":["Morpheus","Freddy Krueger","Dream"],"color":"#FF5733","id":"38"},{"name":"The Spirit Medium","description":"A person who can communicate with the dead or spirit world","x":120.1784820557,"y":261.6329956055,"tags":["John Constantine","Cole Sear","Luna Lovegood"],"color":"#FF5733","id":"39"},{"name":"The Enchantress","description":"A female magic user who specializes in charm and illusion magic","x":237.3942871094,"y":246.7218170166,"tags":["Circe","Morgan Le Fay","The White Witch"],"color":"#FF5733","id":"40"},{"name":"The Time Manipulator","description":"A character who can control or travel through time","x":164.7047119141,"y":291.5953979492,"tags":["Doctor Strange","Hermione (with Time-Turner)","The Doctor"],"color":"#FF5733","id":"41"},{"name":"The Soul Collector","description":"A being who harvests or trades in souls","x":186.561126709,"y":318.3096923828,"tags":["Mephisto","Hades","Death"],"color":"#FF5733","id":"42"},{"name":"The Hidden Guardian","description":"A protector who works in secret to maintain balance or safety","x":202.3938293457,"y":185.3256072998,"tags":["Nick Fury","The Watchers","Men in Black"],"color":"#FF5733","id":"43"},{"name":"The Puppet Master","description":"A manipulative character who controls others from behind the scenes","x":270.1156311035,"y":281.9112548828,"tags":["Littlefinger","Emperor Palpatine","Varys"],"color":"#FF5733","id":"44"},{"name":"The War Chief","description":"A leader who excels in military strategy and combat","x":260.1105957031,"y":64.4695892334,"tags":["Aragorn","Theoden","Leonidas"],"color":"#FF5733","id":"45"},{"name":"The Witch Hunter","description":"A specialist trained to track and eliminate magical threats","x":297.3025512695,"y":189.0743255615,"tags":["Solomon Kane","Hansel","Van Helsing"],"color":"#FF5733","id":"46"},{"name":"The Rogue Wizard","description":"A magic user who operates outside traditional magical society","x":160.4831237793,"y":235.9141235352,"tags":["Harry Dresden","John Constantine","Doctor Strange"],"color":"#FF5733","id":"47"},{"name":"The Cursed Warrior","description":"A fighter bearing a supernatural burden or curse","x":305.0236816406,"y":135.1115722656,"tags":["Ghost Rider","Prince Ashitaka","The Punisher"],"color":"#FF5733","id":"48"},{"name":"The Divine Champion","description":"A mortal chosen by the gods to carry out their will","x":131.4893188477,"y":118.6195907593,"tags":["Perseus","Wonder Woman","Thor"],"color":"#FF5733","id":"49"},{"name":"The Shadow Queen","description":"A female ruler who uses dark magic to maintain power","x":312.5499267578,"y":242.4575042725,"tags":["Evil Queen","Ravenna","Queen Bavmorda"],"color":"#FF5733","id":"50"},{"name":"The Nature Spirit","description":"A magical being embodying natural forces","x":118.0346984863,"y":183.3952178955,"tags":["Totoro","Pan","Dryads"],"color":"#FF5733","id":"51"},{"name":"The Dimensional Traveler","description":"A character who can move between different worlds or realities","x":128.4854431152,"y":302.3070068359,"tags":["Doctor Strange","The Doctor","Philip Pullman's Will"],"color":"#FF5733","id":"52"},{"name":"The Cursed Lover","description":"A character whose love is complicated by a magical affliction","x":311.2727050781,"y":195.8330078125,"tags":["Beast","Edward Cullen","Ladyhawke"],"color":"#FF5733","id":"53"},{"name":"The Blood Hunter","description":"A tracker who specializes in hunting vampires or other blood-drinking creatures","x":303.380859375,"y":206.5812225342,"tags":["Blade","Van Helsing","Buffy Summers"],"color":"#FF5733","id":"54"},{"name":"The Celestial Being","description":"A powerful entity from the heavens or cosmic realm","x":102.7868423462,"y":145.2703552246,"tags":["Thor","Gandalf","The Silver Surfer"],"color":"#FF5733","id":"55"},{"name":"The Chaos Agent","description":"A character who deliberately creates disorder for their own purposes","x":162.497833252,"y":260.2475585938,"tags":["Loki","Q","The Joker"],"color":"#FF5733","id":"56"},{"name":"The Dream Weaver","description":"A magic user who can create and manipulate illusions","x":148.5202026367,"y":339.4489746094,"tags":["Morpheus","Sandman","Inception's Architects"],"color":"#FF5733","id":"57"},{"name":"The Soul Knight","description":"A warrior who protects the spiritual realm","x":321.8147583008,"y":115.9508666992,"tags":["Ghost Rider","Spawn","Constantine"],"color":"#FF5733","id":"58"},{"name":"The Storm Bringer","description":"A being capable of controlling weather and atmospheric conditions","x":97.7696228027,"y":153.439453125,"tags":["Storm","Thor","Zeus"],"color":"#FF5733","id":"59"},{"name":"The Blood Queen","description":"A female ruler who maintains power through blood magic or sacrifice","x":317.8590087891,"y":231.9524383545,"tags":["Elizabeth Bathory","Queen of Hearts","Crimson Queen"],"color":"#FF5733","id":"60"},{"name":"The Void Walker","description":"A character who can traverse or manipulate the empty spaces between realms","x":105.0753860474,"y":298.8676147461,"tags":["Doctor Strange","Nightcrawler","Portal's Chell"],"color":"#FF5733","id":"61"},{"name":"The Summoner","description":"A magic user who specializes in calling forth creatures or spirits","x":136.1374816895,"y":212.8395843506,"tags":["Yuna","Rita Repulsa","Pokemon Trainers"],"color":"#FF5733","id":"62"},{"name":"The Living Weapon","description":"A person transformed into a weapon through magic or other means","x":221.0505981445,"y":284.3971557617,"tags":["Winter Soldier","Wolverine","Edward Scissorhands"],"color":"#FF5733","id":"63"},{"name":"The Star Child","description":"A being of cosmic origin in human form","x":118.3366622925,"y":131.3328857422,"tags":["Superman","Starman","Star-Lord"],"color":"#FF5733","id":"64"},{"name":"The Witch King","description":"A male ruler who combines magical power with political authority","x":350.0,"y":226.5062103271,"tags":["Witch-king of Angmar","The Lich King","The Night King"],"color":"#FF5733","id":"65"},{"name":"The Memory Keeper","description":"A character who preserves or manipulates memories","x":221.7975311279,"y":201.3901367188,"tags":["Dumbledore","The Giver","Memory Monks"],"color":"#FF5733","id":"66"},{"name":"The Plague Doctor","description":"A healer who deals with magical diseases and curses","x":197.5186767578,"y":224.8429260254,"tags":["Madam Pomfrey","Doctor Strange","Elrond"],"color":"#FF5733","id":"67"},{"name":"The Eternal Champion","description":"A warrior who is continuously reborn to fight evil across different ages","x":271.7469787598,"y":100.0413208008,"tags":["Link","Michael Moorcock's Eternal Champion","The Avatar"],"color":"#FF5733","id":"68"},{"name":"The Tomb Raider","description":"An adventurer who explores ancient magical ruins and artifacts","x":227.5024261475,"y":114.1574707031,"tags":["Indiana Jones","Lara Croft","Nathan Drake"],"color":"#FF5733","id":"69"},{"name":"The Gatekeeper","description":"A guardian who protects portals between worlds or realms","x":202.1027984619,"y":168.6817932129,"tags":["Heimdall","The Guardian of Forever","Hodor"],"color":"#FF5733","id":"70"},{"name":"The Cosmic Horror","description":"An ancient being whose very existence threatens reality","x":75.0,"y":220.222869873,"tags":["Cthulhu","The Other Gods","The Nothing"],"color":"#FF5733","id":"71"},{"name":"The Undying King","description":"A ruler who has achieved immortality through dark means","x":349.748260498,"y":205.879776001,"tags":["The Lich King","Nagash","The Night King"],"color":"#FF5733","id":"72"},{"name":"The World Walker","description":"A traveler who moves between different planes of existence","x":119.0167922974,"y":308.2847595215,"tags":["Rincewind","Lyra Belacqua","Richard Cypher"],"color":"#FF5733","id":"73"},{"name":"The Chaos Mage","description":"A spellcaster who harnesses unpredictable, wild magic","x":156.0379333496,"y":227.1935577393,"tags":["Rincewind","Willow","Wanda Maximoff"],"color":"#FF5733","id":"74"},{"name":"The Dream Lord","description":"A powerful being who rules over the realm of dreams","x":125.4868927002,"y":350.0,"tags":["Morpheus","The Sandman","Hypnos"],"color":"#FF5733","id":"75"},{"name":"The Soul Weaver","description":"A magic user who can manipulate the essence of life itself","x":178.253112793,"y":326.409942627,"tags":["Doctor Facilier","Shang Tsung","Death"],"color":"#FF5733","id":"76"},{"name":"The Forgotten God","description":"A deity who has lost most of their worshippers and power","x":77.0024795532,"y":195.2283630371,"tags":["Wednesday","Pan","The Old Gods"],"color":"#FF5733","id":"77"},{"name":"The Rune Master","description":"A scholar who derives power from ancient magical symbols","x":179.6587524414,"y":200.6986999512,"tags":["Elminster","Doctor Strange","Gandalf"],"color":"#FF5733","id":"78"},{"name":"The Living Legend","description":"A hero whose deeds have become mythological in their own lifetime","x":254.5330657959,"y":109.6379776001,"tags":["Drizzt Do'Urden","Conan","King Arthur"],"color":"#FF5733","id":"79"},{"name":"The Death Knight","description":"A fallen warrior resurrected to serve dark powers","x":330.9916381836,"y":139.0960693359,"tags":["Arthas","Lord Soth","The Nazg\u00fbl"],"color":"#FF5733","id":"80"},{"name":"The Spell Thief","description":"A character who can steal or copy others' magical abilities","x":191.1448974609,"y":284.9484863281,"tags":["Rogue","Sylar","Peter Petrelli"],"color":"#FF5733","id":"81"},{"name":"The Living Prophecy","description":"A person whose very existence fulfills an ancient prediction","x":208.2136383057,"y":91.4080200195,"tags":["Neo","John Connor","Anakin Skywalker"],"color":"#FF5733","id":"82"},{"name":"The Cosmic Trickster","description":"A powerful being who uses chaos and mischief to test heroes","x":143.0363616943,"y":268.3032836914,"tags":["Q","Mr. Mxyzptlk","Coyote"],"color":"#FF5733","id":"83"},{"name":"The Spirit Walker","description":"A shaman who can journey through the spirit world","x":105.8817825317,"y":277.6440734863,"tags":["Aang","John Constantine","Doctor Strange"],"color":"#FF5733","id":"84"},{"name":"The Cursed Prophet","description":"A seer whose predictions are true but never believed","x":254.8762817383,"y":171.0225524902,"tags":["Cassandra","Trelawney","The Oracle"],"color":"#FF5733","id":"85"},{"name":"The Elemental Lord","description":"A being who embodies and controls a force of nature","x":85.348449707,"y":164.1797790527,"tags":["Poseidon","Gaia","Mother Nature"],"color":"#FF5733","id":"86"},{"name":"The Void Lord","description":"A entity seeking to consume or nullify existence itself","x":77.6433868408,"y":267.4666748047,"tags":["Dormammu","The Nothing","Anti-Monitor"],"color":"#FF5733","id":"87"}]
+export const fantasyArchetypesData: ArchetypeNode[] = [{ "name": "The Chosen One", "description": "A seemingly ordinary person destined for extraordinary things, often marked by prophecy or unique abilities", "x": 218.5660552979, "y": 93.6589508057, "tags": ["Harry Potter", "Frodo Baggins", "Paul Atreides"], "color": "#FF5733", "id": "0" }, { "name": "The Wise Mentor", "description": "An elderly sage who guides the hero with wisdom and sometimes magic", "x": 216.2848815918, "y": 145.3287353516, "tags": ["Gandalf", "Dumbledore", "Obi-Wan Kenobi"], "color": "#FF5733", "id": "1" }, { "name": "The Dark Lord", "description": "A powerful evil being seeking domination or destruction of the world", "x": 343.2026672363, "y": 234.1966247559, "tags": ["Sauron", "Voldemort", "The Night King"], "color": "#FF5733", "id": "2" }, { "name": "The Loyal Friend", "description": "A steadfast companion who supports the hero through their journey", "x": 197.546295166, "y": 126.267364502, "tags": ["Samwise Gamgee", "Ron Weasley", "Chewbacca"], "color": "#FF5733", "id": "3" }, { "name": "The Warrior Princess", "description": "A noble woman who defies traditional roles to become a fierce fighter", "x": 245.740447998, "y": 50.0, "tags": ["Eowyn", "Xena", "Wonder Woman"], "color": "#FF5733", "id": "4" }, { "name": "The Trickster", "description": "A clever and mischievous character who creates chaos but sometimes helps the hero", "x": 166.2662963867, "y": 264.9904174805, "tags": ["Loki", "Puck", "Jack Sparrow"], "color": "#FF5733", "id": "5" }, { "name": "The Fallen Hero", "description": "A once-noble character corrupted by power or tragedy", "x": 264.3517456055, "y": 83.8640136719, "tags": ["Anakin Skywalker", "Boromir", "Arthas Menethil"], "color": "#FF5733", "id": "6" }, { "name": "The Royal Heir", "description": "A legitimate or hidden heir to the throne who must reclaim their birthright", "x": 204.5517120361, "y": 59.6754684448, "tags": ["Aragorn", "Daenerys Targaryen", "Simba"], "color": "#FF5733", "id": "7" }, { "name": "The Mysterious Stranger", "description": "A enigmatic figure with unclear motives who appears at crucial moments", "x": 142.6921386719, "y": 269.3865966797, "tags": ["Strider", "Tom Bombadil", "The Man in Black"], "color": "#FF5733", "id": "8" }, { "name": "The Evil Advisor", "description": "A manipulative counselor who poisons the mind of those in power", "x": 293.5388793945, "y": 269.1989135742, "tags": ["Grima Wormtongue", "Jafar", "Littlefinger"], "color": "#FF5733", "id": "9" }, { "name": "The Knight Errant", "description": "A wandering warrior bound by a personal code of honor", "x": 299.1335449219, "y": 91.346572876, "tags": ["The Witcher", "Don Quixote", "The Mandalorian"], "color": "#FF5733", "id": "10" }, { "name": "The Child of Prophecy", "description": "A young person whose birth or existence is tied to an important prediction", "x": 193.6342468262, "y": 85.8962936401, "tags": ["Anakin Skywalker", "Rand al'Thor", "Azor Ahai"], "color": "#FF5733", "id": "11" }, { "name": "The Reluctant Hero", "description": "Someone who initially refuses the call to adventure but eventually accepts their destiny", "x": 229.0170288086, "y": 80.1286392212, "tags": ["Bilbo Baggins", "Neo", "Luke Skywalker"], "color": "#FF5733", "id": "12" }, { "name": "The Wise Woman", "description": "A powerful female figure who provides guidance through magic or wisdom", "x": 232.0320892334, "y": 218.6385955811, "tags": ["Galadriel", "Minerva McGonagall", "Moiraine Damodred"], "color": "#FF5733", "id": "13" }, { "name": "The Beast Master", "description": "A character with a special connection to animals or magical creatures", "x": 175.105682373, "y": 163.0348510742, "tags": ["Hagrid", "Daine Sarrasri", "Eliza Thornberry"], "color": "#FF5733", "id": "14" }, { "name": "The Dark Witch", "description": "A malevolent female magic user who often serves as an antagonist", "x": 314.8571166992, "y": 253.1897125244, "tags": ["Bellatrix Lestrange", "The White Witch", "Maleficent"], "color": "#FF5733", "id": "15" }, { "name": "The Scholar Mage", "description": "A studious magic user who relies on knowledge and research", "x": 175.593170166, "y": 214.9264984131, "tags": ["Hermione Granger", "Raistlin Majere", "Doctor Strange"], "color": "#FF5733", "id": "16" }, { "name": "The Cursed One", "description": "A character suffering from a magical affliction or transformation", "x": 314.2824707031, "y": 178.6775054932, "tags": ["Beast", "Edward Scissorhands", "The Hulk"], "color": "#FF5733", "id": "17" }, { "name": "The Wild Child", "description": "A character raised away from civilization, often by animals or magical beings", "x": 144.0669708252, "y": 162.3541564941, "tags": ["Mowgli", "Tarzan", "Peter Pan"], "color": "#FF5733", "id": "18" }, { "name": "The Dragon Rider", "description": "A warrior who shares a special bond with a dragon mount", "x": 179.655456543, "y": 90.7490539551, "tags": ["Eragon", "Daenerys Targaryen", "Hiccup"], "color": "#FF5733", "id": "19" }, { "name": "The Shadow Assassin", "description": "A deadly killer who operates from the shadows, often with magical abilities", "x": 282.3618774414, "y": 248.5007629395, "tags": ["Artemis Entreri", "Grey Worm", "Azrael"], "color": "#FF5733", "id": "20" }, { "name": "The Gentle Giant", "description": "A physically imposing character with a kind and peaceful nature", "x": 191.8167724609, "y": 152.2978057861, "tags": ["Hodor", "Hagrid", "The BFG"], "color": "#FF5733", "id": "21" }, { "name": "The Lost Prince", "description": "A royal child separated from their heritage who must discover their true identity", "x": 217.2685699463, "y": 50.7092628479, "tags": ["Arthur Pendragon", "Jon Snow", "Perseus"], "color": "#FF5733", "id": "22" }, { "name": "The Forest Guardian", "description": "A mystical protector of nature and wildlife", "x": 172.8095245361, "y": 133.8649597168, "tags": ["Radagast", "Pocahontas", "The Lorax"], "color": "#FF5733", "id": "23" }, { "name": "The Battle Mage", "description": "A warrior who combines martial prowess with magical abilities", "x": 167.470489502, "y": 193.5250091553, "tags": ["Gandalf", "Elminster", "Doctor Strange"], "color": "#FF5733", "id": "24" }, { "name": "The Shapeshifter", "description": "A being capable of changing their physical form at will", "x": 204.9894714355, "y": 272.0228881836, "tags": ["Mystique", "Beorn", "Professor McGonagall"], "color": "#FF5733", "id": "25" }, { "name": "The Prophecy Keeper", "description": "A character who maintains and interprets important predictions about the future", "x": 235.6864624023, "y": 173.634262085, "tags": ["Trelawney", "The Oracle", "Melisandre"], "color": "#FF5733", "id": "26" }, { "name": "The Dark Knight", "description": "A warrior who uses questionable methods to achieve noble goals", "x": 309.7498168945, "y": 111.6669921875, "tags": ["Geralt of Rivia", "Batman", "The Punisher"], "color": "#FF5733", "id": "27" }, { "name": "The Fairy Godmother", "description": "A benevolent magical being who helps those in need", "x": 224.9034881592, "y": 234.0593566895, "tags": ["Cinderella's Godmother", "The Blue Fairy", "Flora, Fauna, and Merryweather"], "color": "#FF5733", "id": "28" }, { "name": "The Cursed King", "description": "A ruler suffering from a magical affliction that affects their kingdom", "x": 335.6951293945, "y": 183.0847320557, "tags": ["Beast", "Fisher King", "Theoden"], "color": "#FF5733", "id": "29" }, { "name": "The Wild Mage", "description": "A magic user whose powers are unpredictable and tied to nature", "x": 136.1648101807, "y": 195.5142669678, "tags": ["Daine Sarrasri", "Merlin", "Storm"], "color": "#FF5733", "id": "30" }, { "name": "The Immortal Being", "description": "A character who cannot die and has lived through countless ages", "x": 265.2870788574, "y": 119.1040267944, "tags": ["Wolverine", "Elrond", "Vandal Savage"], "color": "#FF5733", "id": "31" }, { "name": "The Elemental Master", "description": "A magic user who specializes in controlling one or more natural elements", "x": 104.6075057983, "y": 177.9459533691, "tags": ["Avatar Aang", "Storm", "Toph Beifong"], "color": "#FF5733", "id": "32" }, { "name": "The Sacred Knight", "description": "A warrior devoted to a religious or spiritual cause", "x": 311.8178710938, "y": 80.6584014893, "tags": ["Galahad", "Templars", "Paladins"], "color": "#FF5733", "id": "33" }, { "name": "The Rebel Leader", "description": "A charismatic figure who leads the resistance against tyranny", "x": 232.8185424805, "y": 66.5888366699, "tags": ["Princess Leia", "Katniss Everdeen", "Robin Hood"], "color": "#FF5733", "id": "34" }, { "name": "The Blood Mage", "description": "A practitioner of forbidden magic that requires life force or sacrifice", "x": 268.3757629395, "y": 230.4608612061, "tags": ["Morgana", "Flemeth", "Blood Raven"], "color": "#FF5733", "id": "35" }, { "name": "The Beast Slayer", "description": "A specialized warrior who hunts dangerous monsters", "x": 307.7963256836, "y": 174.2710418701, "tags": ["Van Helsing", "Beowulf", "Monster Hunter"], "color": "#FF5733", "id": "36" }, { "name": "The Corrupted Priest", "description": "A religious figure who has fallen to darkness or evil", "x": 268.9983520508, "y": 187.6210632324, "tags": ["High Sparrow", "Claude Frollo", "Melisandre"], "color": "#FF5733", "id": "37" }, { "name": "The Dream Walker", "description": "Someone who can enter and manipulate dreams", "x": 134.1853790283, "y": 330.3759155273, "tags": ["Morpheus", "Freddy Krueger", "Dream"], "color": "#FF5733", "id": "38" }, { "name": "The Spirit Medium", "description": "A person who can communicate with the dead or spirit world", "x": 120.1784820557, "y": 261.6329956055, "tags": ["John Constantine", "Cole Sear", "Luna Lovegood"], "color": "#FF5733", "id": "39" }, { "name": "The Enchantress", "description": "A female magic user who specializes in charm and illusion magic", "x": 237.3942871094, "y": 246.7218170166, "tags": ["Circe", "Morgan Le Fay", "The White Witch"], "color": "#FF5733", "id": "40" }, { "name": "The Time Manipulator", "description": "A character who can control or travel through time", "x": 164.7047119141, "y": 291.5953979492, "tags": ["Doctor Strange", "Hermione (with Time-Turner)", "The Doctor"], "color": "#FF5733", "id": "41" }, { "name": "The Soul Collector", "description": "A being who harvests or trades in souls", "x": 186.561126709, "y": 318.3096923828, "tags": ["Mephisto", "Hades", "Death"], "color": "#FF5733", "id": "42" }, { "name": "The Hidden Guardian", "description": "A protector who works in secret to maintain balance or safety", "x": 202.3938293457, "y": 185.3256072998, "tags": ["Nick Fury", "The Watchers", "Men in Black"], "color": "#FF5733", "id": "43" }, { "name": "The Puppet Master", "description": "A manipulative character who controls others from behind the scenes", "x": 270.1156311035, "y": 281.9112548828, "tags": ["Littlefinger", "Emperor Palpatine", "Varys"], "color": "#FF5733", "id": "44" }, { "name": "The War Chief", "description": "A leader who excels in military strategy and combat", "x": 260.1105957031, "y": 64.4695892334, "tags": ["Aragorn", "Theoden", "Leonidas"], "color": "#FF5733", "id": "45" }, { "name": "The Witch Hunter", "description": "A specialist trained to track and eliminate magical threats", "x": 297.3025512695, "y": 189.0743255615, "tags": ["Solomon Kane", "Hansel", "Van Helsing"], "color": "#FF5733", "id": "46" }, { "name": "The Rogue Wizard", "description": "A magic user who operates outside traditional magical society", "x": 160.4831237793, "y": 235.9141235352, "tags": ["Harry Dresden", "John Constantine", "Doctor Strange"], "color": "#FF5733", "id": "47" }, { "name": "The Cursed Warrior", "description": "A fighter bearing a supernatural burden or curse", "x": 305.0236816406, "y": 135.1115722656, "tags": ["Ghost Rider", "Prince Ashitaka", "The Punisher"], "color": "#FF5733", "id": "48" }, { "name": "The Divine Champion", "description": "A mortal chosen by the gods to carry out their will", "x": 131.4893188477, "y": 118.6195907593, "tags": ["Perseus", "Wonder Woman", "Thor"], "color": "#FF5733", "id": "49" }, { "name": "The Shadow Queen", "description": "A female ruler who uses dark magic to maintain power", "x": 312.5499267578, "y": 242.4575042725, "tags": ["Evil Queen", "Ravenna", "Queen Bavmorda"], "color": "#FF5733", "id": "50" }, { "name": "The Nature Spirit", "description": "A magical being embodying natural forces", "x": 118.0346984863, "y": 183.3952178955, "tags": ["Totoro", "Pan", "Dryads"], "color": "#FF5733", "id": "51" }, { "name": "The Dimensional Traveler", "description": "A character who can move between different worlds or realities", "x": 128.4854431152, "y": 302.3070068359, "tags": ["Doctor Strange", "The Doctor", "Philip Pullman's Will"], "color": "#FF5733", "id": "52" }, { "name": "The Cursed Lover", "description": "A character whose love is complicated by a magical affliction", "x": 311.2727050781, "y": 195.8330078125, "tags": ["Beast", "Edward Cullen", "Ladyhawke"], "color": "#FF5733", "id": "53" }, { "name": "The Blood Hunter", "description": "A tracker who specializes in hunting vampires or other blood-drinking creatures", "x": 303.380859375, "y": 206.5812225342, "tags": ["Blade", "Van Helsing", "Buffy Summers"], "color": "#FF5733", "id": "54" }, { "name": "The Celestial Being", "description": "A powerful entity from the heavens or cosmic realm", "x": 102.7868423462, "y": 145.2703552246, "tags": ["Thor", "Gandalf", "The Silver Surfer"], "color": "#FF5733", "id": "55" }, { "name": "The Chaos Agent", "description": "A character who deliberately creates disorder for their own purposes", "x": 162.497833252, "y": 260.2475585938, "tags": ["Loki", "Q", "The Joker"], "color": "#FF5733", "id": "56" }, { "name": "The Dream Weaver", "description": "A magic user who can create and manipulate illusions", "x": 148.5202026367, "y": 339.4489746094, "tags": ["Morpheus", "Sandman", "Inception's Architects"], "color": "#FF5733", "id": "57" }, { "name": "The Soul Knight", "description": "A warrior who protects the spiritual realm", "x": 321.8147583008, "y": 115.9508666992, "tags": ["Ghost Rider", "Spawn", "Constantine"], "color": "#FF5733", "id": "58" }, { "name": "The Storm Bringer", "description": "A being capable of controlling weather and atmospheric conditions", "x": 97.7696228027, "y": 153.439453125, "tags": ["Storm", "Thor", "Zeus"], "color": "#FF5733", "id": "59" }, { "name": "The Blood Queen", "description": "A female ruler who maintains power through blood magic or sacrifice", "x": 317.8590087891, "y": 231.9524383545, "tags": ["Elizabeth Bathory", "Queen of Hearts", "Crimson Queen"], "color": "#FF5733", "id": "60" }, { "name": "The Void Walker", "description": "A character who can traverse or manipulate the empty spaces between realms", "x": 105.0753860474, "y": 298.8676147461, "tags": ["Doctor Strange", "Nightcrawler", "Portal's Chell"], "color": "#FF5733", "id": "61" }, { "name": "The Summoner", "description": "A magic user who specializes in calling forth creatures or spirits", "x": 136.1374816895, "y": 212.8395843506, "tags": ["Yuna", "Rita Repulsa", "Pokemon Trainers"], "color": "#FF5733", "id": "62" }, { "name": "The Living Weapon", "description": "A person transformed into a weapon through magic or other means", "x": 221.0505981445, "y": 284.3971557617, "tags": ["Winter Soldier", "Wolverine", "Edward Scissorhands"], "color": "#FF5733", "id": "63" }, { "name": "The Star Child", "description": "A being of cosmic origin in human form", "x": 118.3366622925, "y": 131.3328857422, "tags": ["Superman", "Starman", "Star-Lord"], "color": "#FF5733", "id": "64" }, { "name": "The Witch King", "description": "A male ruler who combines magical power with political authority", "x": 350.0, "y": 226.5062103271, "tags": ["Witch-king of Angmar", "The Lich King", "The Night King"], "color": "#FF5733", "id": "65" }, { "name": "The Memory Keeper", "description": "A character who preserves or manipulates memories", "x": 221.7975311279, "y": 201.3901367188, "tags": ["Dumbledore", "The Giver", "Memory Monks"], "color": "#FF5733", "id": "66" }, { "name": "The Plague Doctor", "description": "A healer who deals with magical diseases and curses", "x": 197.5186767578, "y": 224.8429260254, "tags": ["Madam Pomfrey", "Doctor Strange", "Elrond"], "color": "#FF5733", "id": "67" }, { "name": "The Eternal Champion", "description": "A warrior who is continuously reborn to fight evil across different ages", "x": 271.7469787598, "y": 100.0413208008, "tags": ["Link", "Michael Moorcock's Eternal Champion", "The Avatar"], "color": "#FF5733", "id": "68" }, { "name": "The Tomb Raider", "description": "An adventurer who explores ancient magical ruins and artifacts", "x": 227.5024261475, "y": 114.1574707031, "tags": ["Indiana Jones", "Lara Croft", "Nathan Drake"], "color": "#FF5733", "id": "69" }, { "name": "The Gatekeeper", "description": "A guardian who protects portals between worlds or realms", "x": 202.1027984619, "y": 168.6817932129, "tags": ["Heimdall", "The Guardian of Forever", "Hodor"], "color": "#FF5733", "id": "70" }, { "name": "The Cosmic Horror", "description": "An ancient being whose very existence threatens reality", "x": 75.0, "y": 220.222869873, "tags": ["Cthulhu", "The Other Gods", "The Nothing"], "color": "#FF5733", "id": "71" }, { "name": "The Undying King", "description": "A ruler who has achieved immortality through dark means", "x": 349.748260498, "y": 205.879776001, "tags": ["The Lich King", "Nagash", "The Night King"], "color": "#FF5733", "id": "72" }, { "name": "The World Walker", "description": "A traveler who moves between different planes of existence", "x": 119.0167922974, "y": 308.2847595215, "tags": ["Rincewind", "Lyra Belacqua", "Richard Cypher"], "color": "#FF5733", "id": "73" }, { "name": "The Chaos Mage", "description": "A spellcaster who harnesses unpredictable, wild magic", "x": 156.0379333496, "y": 227.1935577393, "tags": ["Rincewind", "Willow", "Wanda Maximoff"], "color": "#FF5733", "id": "74" }, { "name": "The Dream Lord", "description": "A powerful being who rules over the realm of dreams", "x": 125.4868927002, "y": 350.0, "tags": ["Morpheus", "The Sandman", "Hypnos"], "color": "#FF5733", "id": "75" }, { "name": "The Soul Weaver", "description": "A magic user who can manipulate the essence of life itself", "x": 178.253112793, "y": 326.409942627, "tags": ["Doctor Facilier", "Shang Tsung", "Death"], "color": "#FF5733", "id": "76" }, { "name": "The Forgotten God", "description": "A deity who has lost most of their worshippers and power", "x": 77.0024795532, "y": 195.2283630371, "tags": ["Wednesday", "Pan", "The Old Gods"], "color": "#FF5733", "id": "77" }, { "name": "The Rune Master", "description": "A scholar who derives power from ancient magical symbols", "x": 179.6587524414, "y": 200.6986999512, "tags": ["Elminster", "Doctor Strange", "Gandalf"], "color": "#FF5733", "id": "78" }, { "name": "The Living Legend", "description": "A hero whose deeds have become mythological in their own lifetime", "x": 254.5330657959, "y": 109.6379776001, "tags": ["Drizzt Do'Urden", "Conan", "King Arthur"], "color": "#FF5733", "id": "79" }, { "name": "The Death Knight", "description": "A fallen warrior resurrected to serve dark powers", "x": 330.9916381836, "y": 139.0960693359, "tags": ["Arthas", "Lord Soth", "The Nazg\u00fbl"], "color": "#FF5733", "id": "80" }, { "name": "The Spell Thief", "description": "A character who can steal or copy others' magical abilities", "x": 191.1448974609, "y": 284.9484863281, "tags": ["Rogue", "Sylar", "Peter Petrelli"], "color": "#FF5733", "id": "81" }, { "name": "The Living Prophecy", "description": "A person whose very existence fulfills an ancient prediction", "x": 208.2136383057, "y": 91.4080200195, "tags": ["Neo", "John Connor", "Anakin Skywalker"], "color": "#FF5733", "id": "82" }, { "name": "The Cosmic Trickster", "description": "A powerful being who uses chaos and mischief to test heroes", "x": 143.0363616943, "y": 268.3032836914, "tags": ["Q", "Mr. Mxyzptlk", "Coyote"], "color": "#FF5733", "id": "83" }, { "name": "The Spirit Walker", "description": "A shaman who can journey through the spirit world", "x": 105.8817825317, "y": 277.6440734863, "tags": ["Aang", "John Constantine", "Doctor Strange"], "color": "#FF5733", "id": "84" }, { "name": "The Cursed Prophet", "description": "A seer whose predictions are true but never believed", "x": 254.8762817383, "y": 171.0225524902, "tags": ["Cassandra", "Trelawney", "The Oracle"], "color": "#FF5733", "id": "85" }, { "name": "The Elemental Lord", "description": "A being who embodies and controls a force of nature", "x": 85.348449707, "y": 164.1797790527, "tags": ["Poseidon", "Gaia", "Mother Nature"], "color": "#FF5733", "id": "86" }, { "name": "The Void Lord", "description": "A entity seeking to consume or nullify existence itself", "x": 77.6433868408, "y": 267.4666748047, "tags": ["Dormammu", "The Nothing", "Anti-Monitor"], "color": "#FF5733", "id": "87" }]
+
+// x = Evil -> Good, y = External -> Internal
+export const fantasyArchetypesDataOnEvilVSGoodExternalVSInternal: ArchetypeNode[] =
+
+    [{
+        'name': 'The Chosen One',
+        'x': 0.06355758333341323,
+        'y': 0.0017502784617984823,
+        'color': '#FF5733',
+        'id': '0',
+        'tags': ['Harry Potter', 'Frodo Baggins', 'Paul Atreides'],
+        'description': 'A seemingly ordinary person destined for extraordinary things, often marked by prophecy or unique abilities'
+    },
+    {
+        'name': 'The Wise Mentor',
+        'x': 0.05604484069852397,
+        'y': -0.005358354340781968,
+        'color': '#FF5733',
+        'id': '1',
+        'tags': ['Gandalf', 'Dumbledore', 'Obi-Wan Kenobi'],
+        'description': 'An elderly sage who guides the hero with wisdom and sometimes magic'
+    },
+    {
+        'name': 'The Dark Lord',
+        'x': -0.14235666877314693,
+        'y': -0.002577828253838413,
+        'color': '#FF5733',
+        'id': '2',
+        'tags': ['Sauron', 'Voldemort', 'The Night King'],
+        'description': 'A powerful evil being seeking domination or destruction of the world'
+    },
+    {
+        'name': 'The Loyal Friend',
+        'x': 0.08553183147416892,
+        'y': 0.008886625353256516,
+        'color': '#FF5733',
+        'id': '3',
+        'tags': ['Samwise Gamgee', 'Ron Weasley', 'Chewbacca'],
+        'description': 'A steadfast companion who supports the hero through their journey'
+    },
+    {
+        'name': 'The Warrior Princess',
+        'x': 0.03622651329512397,
+        'y': -0.018293011389816802,
+        'color': '#FF5733',
+        'id': '4',
+        'tags': ['Eowyn', 'Xena', 'Wonder Woman'],
+        'description': 'A noble woman who defies traditional roles to become a fierce fighter'
+    },
+    {
+        'name': 'The Trickster',
+        'x': -0.03810074541920638,
+        'y': 0.010078165504601125,
+        'color': '#FF5733',
+        'id': '5',
+        'tags': ['Loki', 'Puck', 'Jack Sparrow'],
+        'description': 'A clever and mischievous character who creates chaos but sometimes helps the hero'
+    },
+    {
+        'name': 'The Fallen Hero',
+        'x': -0.012224586982153646,
+        'y': 0.0003037443183306898,
+        'color': '#FF5733',
+        'id': '6',
+        'tags': ['Anakin Skywalker', 'Boromir', 'Arthas Menethil'],
+        'description': 'A once-noble character corrupted by power or tragedy'
+    },
+    {
+        'name': 'The Royal Heir',
+        'x': 0.023783879180895834,
+        'y': -0.035665793063000606,
+        'color': '#FF5733',
+        'id': '7',
+        'tags': ['Aragorn', 'Daenerys Targaryen', 'Simba'],
+        'description': 'A legitimate or hidden heir to the throne who must reclaim their birthright'
+    },
+    {
+        'name': 'The Mysterious Stranger',
+        'x': -0.01345370366851563,
+        'y': -0.013341209868466153,
+        'color': '#FF5733',
+        'id': '8',
+        'tags': ['Strider', 'Tom Bombadil', 'The Man in Black'],
+        'description': 'A enigmatic figure with unclear motives who appears at crucial moments'
+    },
+    {
+        'name': 'The Evil Advisor',
+        'x': -0.10232113850827088,
+        'y': 0.004744667710377987,
+        'color': '#FF5733',
+        'id': '9',
+        'tags': ['Grima Wormtongue', 'Jafar', 'Littlefinger'],
+        'description': 'A manipulative counselor who poisons the mind of those in power'
+    },
+    {
+        'name': 'The Knight Errant',
+        'x': 0.0519595365105906,
+        'y': -0.00918389913022824,
+        'color': '#FF5733',
+        'id': '10',
+        'tags': ['The Witcher', 'Don Quixote', 'The Mandalorian'],
+        'description': 'A wandering warrior bound by a personal code of honor'
+    },
+    {
+        'name': 'The Child of Prophecy',
+        'x': 0.02625811165437522,
+        'y': -0.003716154686886297,
+        'color': '#FF5733',
+        'id': '11',
+        'tags': ['Anakin Skywalker', "Rand al'Thor", 'Azor Ahai'],
+        'description': 'A young person whose birth or existence is tied to an important prediction'
+    },
+    {
+        'name': 'The Reluctant Hero',
+        'x': 0.05086905058990346,
+        'y': -0.019312686818951458,
+        'color': '#FF5733',
+        'id': '12',
+        'tags': ['Bilbo Baggins', 'Neo', 'Luke Skywalker'],
+        'description': 'Someone who initially refuses the call to adventure but eventually accepts their destiny'
+    },
+    {
+        'name': 'The Wise Woman',
+        'x': 0.032644367969694,
+        'y': -0.015900876075780584,
+        'color': '#FF5733',
+        'id': '13',
+        'tags': ['Galadriel', 'Minerva McGonagall', 'Moiraine Damodred'],
+        'description': 'A powerful female figure who provides guidance through magic or wisdom'
+    },
+    {
+        'name': 'The Beast Master',
+        'x': -0.00858177207477423,
+        'y': -0.0091707985267655,
+        'color': '#FF5733',
+        'id': '14',
+        'tags': ['Hagrid', 'Daine Sarrasri', 'Eliza Thornberry'],
+        'description': 'A character with a special connection to animals or magical creatures'
+    },
+    {
+        'name': 'The Dark Witch',
+        'x': -0.1325013767896217,
+        'y': -0.008654826993265821,
+        'color': '#FF5733',
+        'id': '15',
+        'tags': ['Bellatrix Lestrange', 'The White Witch', 'Maleficent'],
+        'description': 'A malevolent female magic user who often serves as an antagonist'
+    },
+    {
+        'name': 'The Scholar Mage',
+        'x': 0.042581542716118456,
+        'y': 0.013787523580351999,
+        'color': '#FF5733',
+        'id': '16',
+        'tags': ['Hermione Granger', 'Raistlin Majere', 'Doctor Strange'],
+        'description': 'A studious magic user who relies on knowledge and research'
+    },
+    {
+        'name': 'The Cursed One',
+        'x': -0.07075987122540309,
+        'y': 0.038931659549565206,
+        'color': '#FF5733',
+        'id': '17',
+        'tags': ['Beast', 'Edward Scissorhands', 'The Hulk'],
+        'description': 'A character suffering from a magical affliction or transformation'
+    },
+    {
+        'name': 'The Wild Child',
+        'x': -0.007648426955250559,
+        'y': -0.0427260995788222,
+        'color': '#FF5733',
+        'id': '18',
+        'tags': ['Mowgli', 'Tarzan', 'Peter Pan'],
+        'description': 'A character raised away from civilization, often by animals or magical beings'
+    },
+    {
+        'name': 'The Dragon Rider',
+        'x': 0.03636028080816475,
+        'y': 0.01528393208432352,
+        'color': '#FF5733',
+        'id': '19',
+        'tags': ['Eragon', 'Daenerys Targaryen', 'Hiccup'],
+        'description': 'A warrior who shares a special bond with a dragon mount'
+    },
+    {
+        'name': 'The Shadow Assassin',
+        'x': -0.07158781520058444,
+        'y': -0.010325018504293945,
+        'color': '#FF5733',
+        'id': '20',
+        'tags': ['Artemis Entreri', 'Grey Worm', 'Azrael'],
+        'description': 'A deadly killer who operates from the shadows, often with magical abilities'
+    },
+    {
+        'name': 'The Gentle Giant',
+        'x': 0.0636366660468404,
+        'y': -0.006214261906456256,
+        'color': '#FF5733',
+        'id': '21',
+        'tags': ['Hodor', 'Hagrid', 'The BFG'],
+        'description': 'A physically imposing character with a kind and peaceful nature'
+    },
+    {
+        'name': 'The Lost Prince',
+        'x': 0.01574961036947488,
+        'y': -0.05016308026841604,
+        'color': '#FF5733',
+        'id': '22',
+        'tags': ['Arthur Pendragon', 'Jon Snow', 'Perseus'],
+        'description': 'A royal child separated from their heritage who must discover their true identity'
+    },
+    {
+        'name': 'The Forest Guardian',
+        'x': 0.030821729232195644,
+        'y': -0.03449403492193853,
+        'color': '#FF5733',
+        'id': '23',
+        'tags': ['Radagast', 'Pocahontas', 'The Lorax'],
+        'description': 'A mystical protector of nature and wildlife'
+    },
+    {
+        'name': 'The Battle Mage',
+        'x': 0.0008628817430037655,
+        'y': 0.02173494042496449,
+        'color': '#FF5733',
+        'id': '24',
+        'tags': ['Gandalf', 'Elminster', 'Doctor Strange'],
+        'description': 'A warrior who combines martial prowess with magical abilities'
+    },
+    {
+        'name': 'The Shapeshifter',
+        'x': -0.012996410735850228,
+        'y': -0.02045992406417621,
+        'color': '#FF5733',
+        'id': '25',
+        'tags': ['Mystique', 'Beorn', 'Professor McGonagall'],
+        'description': 'A being capable of changing their physical form at will'
+    },
+    {
+        'name': 'The Prophecy Keeper',
+        'x': 0.03661802752424145,
+        'y': 0.010057482318254984,
+        'color': '#FF5733',
+        'id': '26',
+        'tags': ['Trelawney', 'The Oracle', 'Melisandre'],
+        'description': 'A character who maintains and interprets important predictions about the future'
+    },
+    {
+        'name': 'The Dark Knight',
+        'x': -0.004332087449682859,
+        'y': 0.0160818447895862,
+        'color': '#FF5733',
+        'id': '27',
+        'tags': ['Geralt of Rivia', 'Batman', 'The Punisher'],
+        'description': 'A warrior who uses questionable methods to achieve noble goals'
+    },
+    {
+        'name': 'The Fairy Godmother',
+        'x': 0.05257706946691362,
+        'y': 0.015794754918756357,
+        'color': '#FF5733',
+        'id': '28',
+        'tags': ["Cinderella's Godmother",
+            'The Blue Fairy',
+            'Flora, Fauna, and Merryweather'],
+        'description': 'A benevolent magical being who helps those in need'
+    },
+    {
+        'name': 'The Cursed King',
+        'x': -0.07457114607317812,
+        'y': 0.038710212479795655,
+        'color': '#FF5733',
+        'id': '29',
+        'tags': ['Beast', 'Fisher King', 'Theoden'],
+        'description': 'A ruler suffering from a magical affliction that affects their kingdom'
+    },
+    {
+        'name': 'The Wild Mage',
+        'x': -0.019001497187759606,
+        'y': -0.036653096496506166,
+        'color': '#FF5733',
+        'id': '30',
+        'tags': ['Daine Sarrasri', 'Merlin', 'Storm'],
+        'description': 'A magic user whose powers are unpredictable and tied to nature'
+    },
+    {
+        'name': 'The Immortal Being',
+        'x': 0.012476983498614175,
+        'y': -0.04791712015567065,
+        'color': '#FF5733',
+        'id': '31',
+        'tags': ['Wolverine', 'Elrond', 'Vandal Savage'],
+        'description': 'A character who cannot die and has lived through countless ages'
+    },
+    {
+        'name': 'The Elemental Master',
+        'x': -5.041068839192753e-05,
+        'y': -0.01701406583152086,
+        'color': '#FF5733',
+        'id': '32',
+        'tags': ['Avatar Aang', 'Storm', 'Toph Beifong'],
+        'description': 'A magic user who specializes in controlling one or more natural elements'
+    },
+    {
+        'name': 'The Sacred Knight',
+        'x': 0.08357596462088776,
+        'y': 0.009876189200455826,
+        'color': '#FF5733',
+        'id': '33',
+        'tags': ['Galahad', 'Templars', 'Paladins'],
+        'description': 'A warrior devoted to a religious or spiritual cause'
+    },
+    {
+        'name': 'The Rebel Leader',
+        'x': -0.012148535504743513,
+        'y': -0.037487590425632406,
+        'color': '#FF5733',
+        'id': '34',
+        'tags': ['Princess Leia', 'Katniss Everdeen', 'Robin Hood'],
+        'description': 'A charismatic figure who leads the resistance against tyranny'
+    },
+    {
+        'name': 'The Blood Mage',
+        'x': -0.026021121303973715,
+        'y': -0.01406504686742796,
+        'color': '#FF5733',
+        'id': '35',
+        'tags': ['Morgana', 'Flemeth', 'Blood Raven'],
+        'description': 'A practitioner of forbidden magic that requires life force or sacrifice'
+    },
+    {
+        'name': 'The Beast Slayer',
+        'x': -0.033089182010475005,
+        'y': 0.021650054860131718,
+        'color': '#FF5733',
+        'id': '36',
+        'tags': ['Van Helsing', 'Beowulf', 'Monster Hunter'],
+        'description': 'A specialized warrior who hunts dangerous monsters'
+    },
+    {
+        'name': 'The Corrupted Priest',
+        'x': -0.07510497927162427,
+        'y': 0.012792785501358997,
+        'color': '#FF5733',
+        'id': '37',
+        'tags': ['High Sparrow', 'Claude Frollo', 'Melisandre'],
+        'description': 'A religious figure who has fallen to darkness or evil'
+    },
+    {
+        'name': 'The Dream Walker',
+        'x': -0.022137633765787104,
+        'y': -0.0031561558200246254,
+        'color': '#FF5733',
+        'id': '38',
+        'tags': ['Morpheus', 'Freddy Krueger', 'Dream'],
+        'description': 'Someone who can enter and manipulate dreams'
+    },
+    {
+        'name': 'The Spirit Medium',
+        'x': 0.028409390178545033,
+        'y': -0.00788497186849417,
+        'color': '#FF5733',
+        'id': '39',
+        'tags': ['John Constantine', 'Cole Sear', 'Luna Lovegood'],
+        'description': 'A person who can communicate with the dead or spirit world'
+    },
+    {
+        'name': 'The Enchantress',
+        'x': -0.03744476763765174,
+        'y': 0.0029037801375518812,
+        'color': '#FF5733',
+        'id': '40',
+        'tags': ['Circe', 'Morgan Le Fay', 'The White Witch'],
+        'description': 'A female magic user who specializes in charm and illusion magic'
+    },
+    {
+        'name': 'The Time Manipulator',
+        'x': -0.027790756562951963,
+        'y': 0.0027865037034595502,
+        'color': '#FF5733',
+        'id': '41',
+        'tags': ['Doctor Strange', 'Hermione (with Time-Turner)', 'The Doctor'],
+        'description': 'A character who can control or travel through time'
+    },
+    {
+        'name': 'The Soul Collector',
+        'x': 0.004318151424143768,
+        'y': -0.019225649672561518,
+        'color': '#FF5733',
+        'id': '42',
+        'tags': ['Mephisto', 'Hades', 'Death'],
+        'description': 'A being who harvests or trades in souls'
+    },
+    {
+        'name': 'The Hidden Guardian',
+        'x': 0.041475329410973566,
+        'y': -0.005793272968698707,
+        'color': '#FF5733',
+        'id': '43',
+        'tags': ['Nick Fury', 'The Watchers', 'Men in Black'],
+        'description': 'A protector who works in secret to maintain balance or safety'
+    },
+    {
+        'name': 'The Puppet Master',
+        'x': -0.08815366618132868,
+        'y': -0.004228420266959659,
+        'color': '#FF5733',
+        'id': '44',
+        'tags': ['Littlefinger', 'Emperor Palpatine', 'Varys'],
+        'description': 'A manipulative character who controls others from behind the scenes'
+    },
+    {
+        'name': 'The War Chief',
+        'x': 0.015512123205629738,
+        'y': 0.01082978728478022,
+        'color': '#FF5733',
+        'id': '45',
+        'tags': ['Aragorn', 'Theoden', 'Leonidas'],
+        'description': 'A leader who excels in military strategy and combat'
+    },
+    {
+        'name': 'The Witch Hunter',
+        'x': -0.03585988748844052,
+        'y': 0.01684698318581697,
+        'color': '#FF5733',
+        'id': '46',
+        'tags': ['Solomon Kane', 'Hansel', 'Van Helsing'],
+        'description': 'A specialist trained to track and eliminate magical threats'
+    },
+    {
+        'name': 'The Rogue Wizard',
+        'x': -0.03831424323847081,
+        'y': -0.014794512171449795,
+        'color': '#FF5733',
+        'id': '47',
+        'tags': ['Harry Dresden', 'John Constantine', 'Doctor Strange'],
+        'description': 'A magic user who operates outside traditional magical society'
+    },
+    {
+        'name': 'The Cursed Warrior',
+        'x': -0.0470454001121092,
+        'y': 0.0321378058372008,
+        'color': '#FF5733',
+        'id': '48',
+        'tags': ['Ghost Rider', 'Prince Ashitaka', 'The Punisher'],
+        'description': 'A fighter bearing a supernatural burden or curse'
+    },
+    {
+        'name': 'The Divine Champion',
+        'x': 0.0448365936867238,
+        'y': 0.008076500570542544,
+        'color': '#FF5733',
+        'id': '49',
+        'tags': ['Perseus', 'Wonder Woman', 'Thor'],
+        'description': 'A mortal chosen by the gods to carry out their will'
+    },
+    {
+        'name': 'The Shadow Queen',
+        'x': -0.08190835664283705,
+        'y': -0.008124260084002369,
+        'color': '#FF5733',
+        'id': '50',
+        'tags': ['Evil Queen', 'Ravenna', 'Queen Bavmorda'],
+        'description': 'A female ruler who uses dark magic to maintain power'
+    },
+    {
+        'name': 'The Nature Spirit',
+        'x': 0.03496844652380758,
+        'y': -0.06788228075979885,
+        'color': '#FF5733',
+        'id': '51',
+        'tags': ['Totoro', 'Pan', 'Dryads'],
+        'description': 'A magical being embodying natural forces'
+    },
+    {
+        'name': 'The Dimensional Traveler',
+        'x': 0.012823216284204506,
+        'y': -0.009040652118650572,
+        'color': '#FF5733',
+        'id': '52',
+        'tags': ['Doctor Strange', 'The Doctor', "Philip Pullman's Will"],
+        'description': 'A character who can move between different worlds or realities'
+    },
+    {
+        'name': 'The Cursed Lover',
+        'x': -0.06628999121851026,
+        'y': 0.04252667654606897,
+        'color': '#FF5733',
+        'id': '53',
+        'tags': ['Beast', 'Edward Cullen', 'Ladyhawke'],
+        'description': 'A character whose love is complicated by a magical affliction'
+    },
+    {
+        'name': 'The Blood Hunter',
+        'x': -0.031906619784903056,
+        'y': -0.008687939039435252,
+        'color': '#FF5733',
+        'id': '54',
+        'tags': ['Blade', 'Van Helsing', 'Buffy Summers'],
+        'description': 'A tracker who specializes in hunting vampires or other blood-drinking creatures'
+    },
+    {
+        'name': 'The Celestial Being',
+        'x': 0.012668738542990304,
+        'y': -0.01327905533441176,
+        'color': '#FF5733',
+        'id': '55',
+        'tags': ['Thor', 'Gandalf', 'The Silver Surfer'],
+        'description': 'A powerful entity from the heavens or cosmic realm'
+    },
+    {
+        'name': 'The Chaos Agent',
+        'x': -0.07459574394345286,
+        'y': -0.019667415262202684,
+        'color': '#FF5733',
+        'id': '56',
+        'tags': ['Loki', 'Q', 'The Joker'],
+        'description': 'A character who deliberately creates disorder for their own purposes'
+    },
+    {
+        'name': 'The Dream Weaver',
+        'x': -0.02066322001364143,
+        'y': 0.004143616367450337,
+        'color': '#FF5733',
+        'id': '57',
+        'tags': ['Morpheus', 'Sandman', "Inception's Architects"],
+        'description': 'A magic user who can create and manipulate illusions'
+    },
+    {
+        'name': 'The Soul Knight',
+        'x': 0.05023264024584492,
+        'y': -0.02489826597598606,
+        'color': '#FF5733',
+        'id': '58',
+        'tags': ['Ghost Rider', 'Spawn', 'Constantine'],
+        'description': 'A warrior who protects the spiritual realm'
+    },
+    {
+        'name': 'The Storm Bringer',
+        'x': -0.009319541819813856,
+        'y': 0.012697603855615344,
+        'color': '#FF5733',
+        'id': '59',
+        'tags': ['Storm', 'Thor', 'Zeus'],
+        'description': 'A being capable of controlling weather and atmospheric conditions'
+    },
+    {
+        'name': 'The Blood Queen',
+        'x': -0.047094076378314836,
+        'y': -0.015511457291586123,
+        'color': '#FF5733',
+        'id': '60',
+        'tags': ['Elizabeth Bathory', 'Queen of Hearts', 'Crimson Queen'],
+        'description': 'A female ruler who maintains power through blood magic or sacrifice'
+    },
+    {
+        'name': 'The Void Walker',
+        'x': -0.023180265552442778,
+        'y': -0.016533176947472333,
+        'color': '#FF5733',
+        'id': '61',
+        'tags': ['Doctor Strange', 'Nightcrawler', "Portal's Chell"],
+        'description': 'A character who can traverse or manipulate the empty spaces between realms'
+    },
+    {
+        'name': 'The Summoner',
+        'x': -0.006864735859953647,
+        'y': 0.019548678457662907,
+        'color': '#FF5733',
+        'id': '62',
+        'tags': ['Yuna', 'Rita Repulsa', 'Pokemon Trainers'],
+        'description': 'A magic user who specializes in calling forth creatures or spirits'
+    },
+    {
+        'name': 'The Living Weapon',
+        'x': -0.02226065235819405,
+        'y': 0.021663065878809007,
+        'color': '#FF5733',
+        'id': '63',
+        'tags': ['Winter Soldier', 'Wolverine', 'Edward Scissorhands'],
+        'description': 'A person transformed into a weapon through magic or other means'
+    },
+    {
+        'name': 'The Star Child',
+        'x': 0.036147202896778655,
+        'y': -0.057225204769549703,
+        'color': '#FF5733',
+        'id': '64',
+        'tags': ['Superman', 'Starman', 'Star-Lord'],
+        'description': 'A being of cosmic origin in human form'
+    },
+    {
+        'name': 'The Witch King',
+        'x': -0.03538218396459479,
+        'y': 0.01788776591247182,
+        'color': '#FF5733',
+        'id': '65',
+        'tags': ['Witch-king of Angmar', 'The Lich King', 'The Night King'],
+        'description': 'A male ruler who combines magical power with political authority'
+    },
+    {
+        'name': 'The Memory Keeper',
+        'x': 0.031060874763380403,
+        'y': -0.001554356741330698,
+        'color': '#FF5733',
+        'id': '66',
+        'tags': ['Dumbledore', 'The Giver', 'Memory Monks'],
+        'description': 'A character who preserves or manipulates memories'
+    },
+    {
+        'name': 'The Plague Doctor',
+        'x': -0.005797116154073911,
+        'y': 0.040288203365824816,
+        'color': '#FF5733',
+        'id': '67',
+        'tags': ['Madam Pomfrey', 'Doctor Strange', 'Elrond'],
+        'description': 'A healer who deals with magical diseases and curses'
+    },
+    {
+        'name': 'The Eternal Champion',
+        'x': 0.005572784029429775,
+        'y': -0.039189299175805783,
+        'color': '#FF5733',
+        'id': '68',
+        'tags': ['Link', "Michael Moorcock's Eternal Champion", 'The Avatar'],
+        'description': 'A warrior who is continuously reborn to fight evil across different ages'
+    },
+    {
+        'name': 'The Tomb Raider',
+        'x': -0.0021956776505708264,
+        'y': -0.010817003520489962,
+        'color': '#FF5733',
+        'id': '69',
+        'tags': ['Indiana Jones', 'Lara Croft', 'Nathan Drake'],
+        'description': 'An adventurer who explores ancient magical ruins and artifacts'
+    },
+    {
+        'name': 'The Gatekeeper',
+        'x': 0.034063705144001685,
+        'y': 0.008123555533934387,
+        'color': '#FF5733',
+        'id': '70',
+        'tags': ['Heimdall', 'The Guardian of Forever', 'Hodor'],
+        'description': 'A guardian who protects portals between worlds or realms'
+    },
+    {
+        'name': 'The Cosmic Horror',
+        'x': -0.09211471551494714,
+        'y': -0.05508184394349716,
+        'color': '#FF5733',
+        'id': '71',
+        'tags': ['Cthulhu', 'The Other Gods', 'The Nothing'],
+        'description': 'An ancient being whose very existence threatens reality'
+    },
+    {
+        'name': 'The Undying King',
+        'x': -0.04016729777301481,
+        'y': -0.034960434286704575,
+        'color': '#FF5733',
+        'id': '72',
+        'tags': ['The Lich King', 'Nagash', 'The Night King'],
+        'description': 'A ruler who has achieved immortality through dark means'
+    },
+    {
+        'name': 'The World Walker',
+        'x': 0.009431213169413102,
+        'y': -0.0073520264745543795,
+        'color': '#FF5733',
+        'id': '73',
+        'tags': ['Rincewind', 'Lyra Belacqua', 'Richard Cypher'],
+        'description': 'A traveler who moves between different planes of existence'
+    },
+    {
+        'name': 'The Chaos Mage',
+        'x': -0.05437634828174419,
+        'y': -0.006766468112396021,
+        'color': '#FF5733',
+        'id': '74',
+        'tags': ['Rincewind', 'Willow', 'Wanda Maximoff'],
+        'description': 'A spellcaster who harnesses unpredictable, wild magic'
+    },
+    {
+        'name': 'The Dream Lord',
+        'x': -0.014677775805167631,
+        'y': -0.007119680558431818,
+        'color': '#FF5733',
+        'id': '75',
+        'tags': ['Morpheus', 'The Sandman', 'Hypnos'],
+        'description': 'A powerful being who rules over the realm of dreams'
+    },
+    {
+        'name': 'The Soul Weaver',
+        'x': -0.003198137877470683,
+        'y': -0.04344145150001827,
+        'color': '#FF5733',
+        'id': '76',
+        'tags': ['Doctor Facilier', 'Shang Tsung', 'Death'],
+        'description': 'A magic user who can manipulate the essence of life itself'
+    },
+    {
+        'name': 'The Forgotten God',
+        'x': -0.017970314833940293,
+        'y': -0.0054723489564884875,
+        'color': '#FF5733',
+        'id': '77',
+        'tags': ['Wednesday', 'Pan', 'The Old Gods'],
+        'description': 'A deity who has lost most of their worshippers and power'
+    },
+    {
+        'name': 'The Rune Master',
+        'x': 0.011297180111534869,
+        'y': -0.0030608342027935026,
+        'color': '#FF5733',
+        'id': '78',
+        'tags': ['Elminster', 'Doctor Strange', 'Gandalf'],
+        'description': 'A scholar who derives power from ancient magical symbols'
+    },
+    {
+        'name': 'The Living Legend',
+        'x': 0.07181392854330788,
+        'y': -0.004378664190520215,
+        'color': '#FF5733',
+        'id': '79',
+        'tags': ["Drizzt Do'Urden", 'Conan', 'King Arthur'],
+        'description': 'A hero whose deeds have become mythological in their own lifetime'
+    },
+    {
+        'name': 'The Death Knight',
+        'x': -0.04278984197736585,
+        'y': 0.006964246387557549,
+        'color': '#FF5733',
+        'id': '80',
+        'tags': ['Arthas', 'Lord Soth', 'The Nazgûl'],
+        'description': 'A fallen warrior resurrected to serve dark powers'
+    },
+    {
+        'name': 'The Spell Thief',
+        'x': -0.059289727825152905,
+        'y': 0.0005533243550467082,
+        'color': '#FF5733',
+        'id': '81',
+        'tags': ['Rogue', 'Sylar', 'Peter Petrelli'],
+        'description': "A character who can steal or copy others' magical abilities"
+    },
+    {
+        'name': 'The Living Prophecy',
+        'x': 0.053561600877030366,
+        'y': -0.01613123845734249,
+        'color': '#FF5733',
+        'id': '82',
+        'tags': ['Neo', 'John Connor', 'Anakin Skywalker'],
+        'description': 'A person whose very existence fulfills an ancient prediction'
+    },
+    {
+        'name': 'The Cosmic Trickster',
+        'x': -0.05046367136882146,
+        'y': -0.008135816838657411,
+        'color': '#FF5733',
+        'id': '83',
+        'tags': ['Q', 'Mr. Mxyzptlk', 'Coyote'],
+        'description': 'A powerful being who uses chaos and mischief to test heroes'
+    },
+    {
+        'name': 'The Spirit Walker',
+        'x': 0.013173477930409142,
+        'y': -0.02608131369581232,
+        'color': '#FF5733',
+        'id': '84',
+        'tags': ['Aang', 'John Constantine', 'Doctor Strange'],
+        'description': 'A shaman who can journey through the spirit world'
+    },
+    {
+        'name': 'The Cursed Prophet',
+        'x': -0.030406717348099715,
+        'y': 0.03057624992187216,
+        'color': '#FF5733',
+        'id': '85',
+        'tags': ['Cassandra', 'Trelawney', 'The Oracle'],
+        'description': 'A seer whose predictions are true but never believed'
+    },
+    {
+        'name': 'The Elemental Lord',
+        'x': -0.009601413523807556,
+        'y': -0.021316161763302977,
+        'color': '#FF5733',
+        'id': '86',
+        'tags': ['Poseidon', 'Gaia', 'Mother Nature'],
+        'description': 'A being who embodies and controls a force of nature'
+    },
+    {
+        'name': 'The Void Lord',
+        'x': -0.07782550545167394,
+        'y': -0.034452945132810595,
+        'color': '#FF5733',
+        'id': '87',
+        'tags': ['Dormammu', 'The Nothing', 'Anti-Monitor'],
+        'description': 'A entity seeking to consume or nullify existence itself'
+    }];
 
 export const scientificFieldsData: ArchetypeNode[] = [
     {

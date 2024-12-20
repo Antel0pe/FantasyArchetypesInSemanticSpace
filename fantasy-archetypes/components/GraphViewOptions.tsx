@@ -16,7 +16,6 @@ const GraphViewOptions = ({ availableVisualizationOptions, visualizationType, se
         <div className="flex flex-wrap gap-2 justify-center">
             {availableVisualizationOptions ? (
                 availableVisualizationOptions.map((option, idx) => (
-                    <>
                         <Button
                             key={option.toString() + idx}
                             variant={visualizationType === option ? 'default' : 'secondary'}
@@ -24,11 +23,10 @@ const GraphViewOptions = ({ availableVisualizationOptions, visualizationType, se
                         >
                             {option}
                         </Button>
-                    </>
                 ))
             ) : (
                 <div>
-                    <p>nothing</p>
+                    <p>No Visualization Options...</p>
                 </div>
             )}
 
