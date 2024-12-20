@@ -8,7 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import ArchetypeViewer from '@/components/archetype-viewer'
 import { ArchetypeNode, fantasyArchetypesData, scientificFieldsData } from '@/lib/data'
 import GraphCardInformation from '@/components/GraphCardInformation'
-import { availableVisualizations } from '@/lib/availableVisualizationOptions'
+import { AvailableGraphVisualizationOptions, availableVisualizations, getAvailableVisualizationsForOption, getNodeDataForVisualizationOption } from '@/lib/availableVisualizationOptions'
 import GraphViewOptions from '@/components/GraphViewOptions'
 
 
@@ -17,6 +17,7 @@ export default function VisualizationSwitcher() {
     const [activeViz, setActiveViz] = useState(availableVisualizations[0])
     const [sidebarOpen, setSidebarOpen] = useState(true)
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
+    const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions>(AvailableGraphVisualizationOptions.Scatter);
     
 
     return (
@@ -121,9 +122,11 @@ export default function VisualizationSwitcher() {
                     <div className="h-full w-full">
                         <div className="min-h-screen bg-black text-white p-6 relative" >
                             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                                <ArchetypeViewer nodeData={activeViz.nodeData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} />
+                                <ArchetypeViewer nodeData={getNodeDataForVisualizationOption(activeViz.nodeData, visualizationType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} />
+
                                 <GraphCardInformation selectedArchetype={selectedArchetype} />
-                                <GraphViewOptions availableVisualizationOptions={activeViz.availableVisualizations} />
+
+                                <GraphViewOptions availableVisualizationOptions={getAvailableVisualizationsForOption(activeViz.nodeData)} visualizationType={visualizationType} setVisualizationType={setVisualizationType} />
                             </div>
                         </div>
                     </div>

@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { ArchetypeNode } from "@/lib/data";
 import { AvailableGraphVisualizationOptions, availableVisualizations, VisualizationNames } from "@/lib/availableVisualizationOptions";
 
 type Props = {
     availableVisualizationOptions: AvailableGraphVisualizationOptions[] | null
+    visualizationType: AvailableGraphVisualizationOptions | null
+    setVisualizationType: Dispatch<AvailableGraphVisualizationOptions>
 }
 
 
-
-const GraphViewOptions = ({ availableVisualizationOptions }: Props) => {
-    const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions | null>();
-
-    // useEffect(() => {
-    //     if (selectedVisualization) {
-    //         let options = availableVisualizations.filter((v) => v.name === selectedVisualization);
-    //         if (options.length > 0) {
-    //             setSelectedVisualizationOptions(options[0].availableVisualizations)
-    //         }
-    //     }
-    // }, [selectedVisualization])
-
+const GraphViewOptions = ({ availableVisualizationOptions, visualizationType, setVisualizationType }: Props) => {
 
     return (
         <div className="flex flex-wrap gap-2 justify-center">
@@ -34,12 +24,6 @@ const GraphViewOptions = ({ availableVisualizationOptions }: Props) => {
                         >
                             {option}
                         </Button>
-                        {/* <Button
-                            variant={option === AvailableGraphVisualizationOptions.TwoDimensionalPlot ? 'default' : 'secondary'}
-                            onClick={() => setVisualizationType(AvailableGraphVisualizationOptions.TwoDimensionalPlot)}
-                        >
-                            Heatmap
-                        </Button> */}
                     </>
                 ))
             ) : (
