@@ -8,8 +8,9 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import ArchetypeViewer from '@/components/archetype-viewer'
 import { ArchetypeNode, fantasyArchetypesData, scientificFieldsData } from '@/lib/data'
 import GraphCardInformation from '@/components/GraphCardInformation'
-import { AvailableGraphVisualizationOptions, availableVisualizations, getAvailableVisualizationsForOption, getNodeDataForVisualizationOption } from '@/lib/availableVisualizationOptions'
+import { AvailableGraphVisualizationOptions, availableVisualizations, getAvailableGraphTypes, getDataForGraphType, getGraphType  } from '@/lib/availableVisualizationOptions'
 import GraphViewOptions from '@/components/GraphViewOptions'
+import BaseGraphViewer from '@/components/BaseGraphViewer'
 
 
 
@@ -19,6 +20,15 @@ export default function VisualizationSwitcher() {
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
     const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions>(AvailableGraphVisualizationOptions.Scatter);
     
+
+    const handleVizChange = (newViz: typeof activeViz) => {
+        setActiveViz(newViz);
+        // Reset to the first supported graph type of the new visualization
+        setVisualizationType(newViz.supportedGraphTypes[0].type);
+        // Optionally clear the selected archetype when switching visualizations
+        setSelectedArchetype(null);
+        if (window.innerWidth < 1024) setSidebarOpen(false);
+    };
 
     return (
         <div className="relative h-screen bg-background overflow-hidden">
@@ -55,8 +65,7 @@ export default function VisualizationSwitcher() {
                                                 : "hover:bg-accent/50 hover:text-accent-foreground"
                                         )}
                                         onClick={() => {
-                                            setActiveViz(viz)
-                                            if (window.innerWidth < 1024) setSidebarOpen(false)
+                                            handleVizChange(viz)
                                         }}
                                     >
                                         <viz.icon className="mr-2 h-4 w-4" />
@@ -121,12 +130,13 @@ export default function VisualizationSwitcher() {
                 <div className="p-6 h-[calc(100vh-5rem)] overflow-auto">
                     <div className="h-full w-full">
                         <div className="min-h-screen bg-black text-white p-6 relative" >
-                            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                                <ArchetypeViewer nodeData={getNodeDataForVisualizationOption(activeViz.nodeData, visualizationType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} />
-
+                            <div className="grid md:grid-cols-2 gap-8  mx-auto">
+                                {/* <ArchetypeViewer nodeData={getDataForGraphType(activeViz, visualizationType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} /> */}
+                                <BaseGraphViewer selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} visualizationCategory={activeViz} graphType={getGraphType(activeViz, visualizationType)} />
+                                
                                 <GraphCardInformation selectedArchetype={selectedArchetype} />
 
-                                <GraphViewOptions availableVisualizationOptions={getAvailableVisualizationsForOption(activeViz.nodeData)} visualizationType={visualizationType} setVisualizationType={setVisualizationType} />
+                                <GraphViewOptions availableVisualizationOptions={getAvailableGraphTypes(activeViz)} visualizationType={visualizationType} setVisualizationType={setVisualizationType} />
                             </div>
                         </div>
                     </div>

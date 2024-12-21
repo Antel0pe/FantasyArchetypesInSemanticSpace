@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ArchetypeNode } from '@/lib/data';
+import { GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
     nodeData: ArchetypeNode[]
     selectedArchetype: ArchetypeNode | null
-    setSelectedArchetype: Dispatch<ArchetypeNode | null>
+    setSelectedArchetype: Dispatch<ArchetypeNode>
+    graphConfig?: GraphConfig
 }
 
 // Custom tooltip component
@@ -26,7 +28,7 @@ const CustomTooltip = ({ active, payload }: any) => {
     return null;
 };
 
-const ArchetypeViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetype }: Props) => {
+const ArchetypeViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetype, graphConfig }: Props) => {
     const [hoveredArchetype, setHoveredArchetype] = useState<string | null>(null);
     const [isMounted, setIsMounted] = useState(false);
 
@@ -49,71 +51,76 @@ const ArchetypeViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetyp
                         <div className="w-full h-full bg-gray-800/50" />
                     </div>
                 ) : (
-                        <ScatterChart
-                            width={440}
-                            height={400}
-                            margin={{
-                                top: 20,
-                                right: 50,
-                                bottom: 20,
-                                left: 20,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
+                    <ScatterChart
+                        width={440}
+                        height={400}
+                        margin={{
+                            top: 20,
+                            right: 50,
+                            bottom: 20,
+                            left: 20,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
 
-                            <XAxis
-                                type="number"
-                                dataKey="x"
-                                name="X"
-                                tick={{ fill: '#9CA3AF' }}
-                                axisLine={{ stroke: '#4B5563' }}
-                            />
-                            <ReferenceLine
-                                y={0}
-                                stroke="#FFFF00"
-                            >
-                                <Label value="Evil" offset={30} position="left" />
-                                <Label value="Good" offset={10} position="right" />
-                            </ReferenceLine>
-                            <ReferenceLine
-                                x={0}
-                                stroke="#FFFF00"
-                                label='y'
-                            >
-                                <Label value="External" offset={30} position="bottom" />
-                                <Label value="Internal" offset={15} position="top" />
-                            </ReferenceLine>
-                            <YAxis
-                                type="number"
-                                dataKey="y"
-                                name="Y"
-                                tick={{ fill: '#9CA3AF' }}
-                                axisLine={{ stroke: '#4B5563' }}
-                            >
-                            </YAxis>
-                            <ZAxis type="number" dataKey="z" range={[100, 200]} />
-                            <Tooltip content={<CustomTooltip />} />
-                            <Scatter
-                                data={chartData}
-                                onMouseEnter={(data) => setHoveredArchetype(data.id)}
-                                onMouseLeave={() => setHoveredArchetype(null)}
-                                onClick={(data) => setSelectedArchetype(data)}
-                            >
-                                {chartData.map((entry, index) => (
-                                    <Cell
-                                        key={`cell-${index}`}
-                                        fill={entry.color}
-                                        cursor="pointer"
-                                        opacity={
-                                            hoveredArchetype === entry.id ? 1 :
-                                                selectedArchetype?.id === entry.id ? 1 : 0.8
-                                        }
-                                        stroke="white"
-                                        strokeWidth={1}
-                                    />
-                                ))}
-                            </Scatter>
-                        </ScatterChart>
+                        <XAxis
+                            type="number"
+                            dataKey="x"
+                            name="X"
+                            tick={{ fill: '#9CA3AF' }}
+                            axisLine={{ stroke: '#4B5563' }}
+                        />
+
+                        <YAxis
+                            type="number"
+                            dataKey="y"
+                            name="Y"
+                            tick={{ fill: '#9CA3AF' }}
+                            axisLine={{ stroke: '#4B5563' }}
+                        />
+                        {graphConfig && (
+                            <>
+                                <ReferenceLine
+                                    y={0}
+                                    stroke="#FFFF00"
+                                >
+                                    <Label value="Evil" offset={30} position="left" />
+                                    <Label value="Good" offset={10} position="right" />
+                                </ReferenceLine>
+                                <ReferenceLine
+                                    x={0}
+                                    stroke="#FFFF00"
+                                    label='y'
+                                >
+                                    <Label value="External" offset={30} position="bottom" />
+                                    <Label value="Internal" offset={15} position="top" />
+                                </ReferenceLine>
+                            </>
+                        )}
+
+                        <ZAxis type="number" dataKey="z" range={[100, 200]} />
+                        <Tooltip content={<CustomTooltip />} />
+                        <Scatter
+                            data={chartData}
+                            onMouseEnter={(data) => setHoveredArchetype(data.id)}
+                            onMouseLeave={() => setHoveredArchetype(null)}
+                            onClick={(data) => setSelectedArchetype(data)}
+                        >
+                            {chartData.map((entry, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={entry.color}
+                                    cursor="pointer"
+                                    opacity={
+                                        hoveredArchetype === entry.id ? 1 :
+                                            selectedArchetype?.id === entry.id ? 1 : 0.8
+                                    }
+                                    stroke="white"
+                                    strokeWidth={1}
+                                />
+                            ))}
+                        </Scatter>
+                    </ScatterChart>
                 )}
             </Card>
 
