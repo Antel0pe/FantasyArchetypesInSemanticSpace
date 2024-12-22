@@ -51,16 +51,6 @@ export interface GraphConfig {
 
 export const availableVisualizations: VisualizationCategory[] = [
     {
-        name: VisualizationNames.ScientificFields,
-        icon: Microscope,
-        supportedGraphTypes: [
-            {
-                type: AvailableGraphVisualizationOptions.Scatter,
-                getData: () => scientificFieldsData
-            }
-        ]
-    },
-    {
         name: VisualizationNames.FantasyArchetypes,
         icon: Wand,
         supportedGraphTypes: [
@@ -85,5 +75,15 @@ export const availableVisualizations: VisualizationCategory[] = [
                 }
             }
         ]
-    }
+    },
+    {
+        name: VisualizationNames.ScientificFields,
+        icon: Microscope,
+        supportedGraphTypes: [
+            {
+                type: AvailableGraphVisualizationOptions.Scatter,
+                getData: () => scientificFieldsData
+            }
+        ]
+    },
 ]

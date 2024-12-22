@@ -11,6 +11,7 @@ import GraphCardInformation from '@/components/GraphCardInformation'
 import { AvailableGraphVisualizationOptions, availableVisualizations, getAvailableGraphTypes, getDataForGraphType, getGraphType  } from '@/lib/availableVisualizationOptions'
 import GraphViewOptions from '@/components/GraphViewOptions'
 import BaseGraphViewer from '@/components/BaseGraphViewer'
+import AxisGeneratorModal from '@/components/AxisGeneratorModal'
 
 
 
@@ -137,6 +138,10 @@ export default function VisualizationSwitcher() {
                                 <GraphCardInformation selectedArchetype={selectedArchetype} />
 
                                 <GraphViewOptions availableVisualizationOptions={getAvailableGraphTypes(activeViz)} visualizationType={visualizationType} setVisualizationType={setVisualizationType} />
+
+                                {visualizationType === AvailableGraphVisualizationOptions.TwoDimensionalPlot && (
+                                    <AxisGeneratorModal axis={'X'} onGenerated={() => null} onClose={() => null}/>
+                                )}
                             </div>
                         </div>
                     </div>
