@@ -58,10 +58,8 @@ def create_axis(negative_terms: List[str], positive_terms: List[str]) -> tuple:
 @app.post("/create-axis", response_model=Dict[str, List[float]])
 async def create_axis_endpoint(terms: TermLists):
     """Create the good-evil axis from term lists"""
-    print(terms)
     try:
         evil_center, good_center = create_axis(terms.left_terms, terms.right_terms)
-        print(evil_center, good_center)
         return {
             "evil_center": evil_center.tolist(),
             "good_center": good_center.tolist()
@@ -98,14 +96,12 @@ async def complete_analysis(
     try:
         # Create axis
         axis_response = await create_axis_endpoint(terms)
-        print(axis_response)
         # Analyze embeddings
         analysis = await analyze_embeddings(
             embeddings,
             axis_response["good_center"],
             axis_response["evil_center"]
         )
-        print(analysis)
         
         return analysis
     except Exception as e:
