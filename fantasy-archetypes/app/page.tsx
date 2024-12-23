@@ -1,17 +1,17 @@
 "use client"
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Menu, Twitter, Microscope, Wand } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import ArchetypeViewer from '@/components/archetype-viewer'
-import { ArchetypeNode, fantasyArchetypesData, scientificFieldsData } from '@/lib/data'
 import GraphCardInformation from '@/components/GraphCardInformation'
-import { AvailableGraphVisualizationOptions, availableVisualizations, getAvailableGraphTypes, getDataForGraphType, getGraphType  } from '@/lib/availableVisualizationOptions'
+import { ArchetypeNode, AvailableGraphVisualizationOptions, availableVisualizations, DisplayNode, getAvailableGraphTypes, getDataForGraphType, getGraphType, GraphConfig } from '@/lib/availableVisualizationOptions'
 import GraphViewOptions from '@/components/GraphViewOptions'
 import BaseGraphViewer from '@/components/BaseGraphViewer'
 import AxisGeneratorModal from '@/components/AxisGeneratorModal'
+import { completeAnalysis, createAxis, EmbeddingInput } from '@/lib/axisGeneration/api'
 
 
 
@@ -20,16 +20,70 @@ export default function VisualizationSwitcher() {
     const [sidebarOpen, setSidebarOpen] = useState(true)
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
     const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions>(AvailableGraphVisualizationOptions.Scatter);
-    
+    const [displayData, setDisplayData] = useState<DisplayNode[]>([])
+    const [graphConfig, setGraphConfig] = useState<GraphConfig | null>(null);
+
+    useEffect(() => {
+        setDisplayData(getDataForGraphType(activeViz, visualizationType)
+            .map(({ id, name, description, tags, color, x, y }) =>
+                ({ id, name, description, tags, color, x, y })));
+
+        // only update config if no config existed before
+        // currently with fantasyArchetype data only changes from scatter to 2d/heatmap
+        if (!graphConfig) {
+            console.log('updating graph config')
+            console.log('prev ' + JSON.stringify(graphConfig))
+            setGraphConfig(getGraphType(activeViz, visualizationType).config ?? null);            
+        }
+    }, [activeViz, visualizationType]) 
 
     const handleVizChange = (newViz: typeof activeViz) => {
         setActiveViz(newViz);
-        // Reset to the first supported graph type of the new visualization
+        // Reset to the first supported graph type of wthe new visualization
         setVisualizationType(newViz.supportedGraphTypes[0].type);
         // Optionally clear the selected archetype when switching visualizations
         setSelectedArchetype(null);
         if (window.innerWidth < 1024) setSidebarOpen(false);
     };
+
+    const onNewAxisGenerated = useCallback(async (left: string[], right: string[], axis: 'x' | 'y') => {
+        const nodesWithEmbeddings = getDataForGraphType(activeViz, visualizationType)
+            .filter((d) => d.originalEmbedding !== undefined);
+
+        let originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
+
+        let newEmbeds = await completeAnalysis({
+            left_terms: left,
+            right_terms: right
+        }, { embeddings: originalEmbeddingData });
+
+        console.log(newEmbeds);
+
+        setDisplayData(prevData => prevData.map(node => {
+            const nodeIndex = nodesWithEmbeddings.findIndex(n => n.id === node.id);
+            if (nodeIndex === -1) return node;  // Keep unchanged if no embedding
+
+            return {
+                ...node,
+                [axis]: newEmbeds.coordinates[nodeIndex]
+            };
+        }));
+
+        if (graphConfig) {
+            setGraphConfig((prevConfig) => {
+                if (!prevConfig) return null;  // TypeScript guard
+                return {
+                    x: prevConfig.x,  // Keep existing x values
+                    y: prevConfig.y,  // Keep existing y values
+                    [axis]: {
+                        negative: left[0],
+                        positive: right[0]
+                    }
+                };
+            });
+        }
+
+    }, [activeViz, visualizationType, graphConfig])
 
     return (
         <div className="relative h-screen bg-background overflow-hidden">
@@ -133,14 +187,17 @@ export default function VisualizationSwitcher() {
                         <div className="min-h-screen bg-black text-white p-6 relative" >
                             <div className="grid md:grid-cols-2 gap-8  mx-auto">
                                 {/* <ArchetypeViewer nodeData={getDataForGraphType(activeViz, visualizationType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} /> */}
-                                <BaseGraphViewer selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} visualizationCategory={activeViz} graphType={getGraphType(activeViz, visualizationType)} />
-                                
+                                <BaseGraphViewer displayData={displayData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} visualizationCategory={activeViz} graphType={getGraphType(activeViz, visualizationType)} graphConfig={graphConfig} />
+
                                 <GraphCardInformation selectedArchetype={selectedArchetype} />
 
                                 <GraphViewOptions availableVisualizationOptions={getAvailableGraphTypes(activeViz)} visualizationType={visualizationType} setVisualizationType={setVisualizationType} />
 
                                 {visualizationType === AvailableGraphVisualizationOptions.TwoDimensionalPlot && (
-                                    <AxisGeneratorModal axis={'X'} onGenerated={() => null} onClose={() => null}/>
+                                    <div>
+                                        <AxisGeneratorModal axis={'x'} onGenerated={onNewAxisGenerated} onClose={() => null} />
+                                        <AxisGeneratorModal axis={'y'} onGenerated={onNewAxisGenerated} onClose={() => null} />
+                                    </div>
                                 )}
                             </div>
                         </div>

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { generateAxisSuggestions, AxisInput, GeneratedResponse } from '../lib/api';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
+import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
 
 interface AxisGeneratorModalProps {
-    axis: 'X' | 'Y';
-    onGenerated?: (left: string[], right: string[]) => void;
+    axis: 'x' | 'y';
+    onGenerated?: (left: string[], right: string[], axis: 'x' | 'y') => void;
     onClose?: () => void;
 }
 
@@ -23,7 +23,7 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
     const [rightInputs, setRightInputs] = useState<AxisInput[]>(() => createEmptyInputs(10));
     const [isGenerating, setIsGenerating] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
 
     const canGenerate = useCallback(() => {
         const hasLeftValue = leftInputs.some(input => input.value.trim() !== '');
@@ -32,7 +32,6 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
     }, [leftInputs, rightInputs]);
 
     const handleInputChange = (index: number, value: string, side: 'left' | 'right'): void => {
-        console.log(index, value, side)
         if (side === 'left') {
             setLeftInputs(prev =>
                 prev.map((input, i) => i === index ? { ...input, value } : input)
@@ -44,31 +43,40 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
         }
     };
 
+    const resetInputs = () => {
+        setLeftInputs(createEmptyInputs(10));
+        setRightInputs(createEmptyInputs(10));
+        setError(null);
+    };
+
     const handleGenerate = async (): Promise<void> => {
         setIsGenerating(true);
         setError(null);
 
         try {
             const response = await generateAxisSuggestions(leftInputs, rightInputs);
+            if (response) {
+                setLeftInputs(prev =>
+                    prev.map((input, i) =>
+                        i === 0 ? { ...input } : {
+                            ...input,
+                            value: input.value || response.leftSuggestions[i - 1] || ''
+                        }
+                    )
+                );
 
-            setLeftInputs(prev =>
-                prev.map((input, i) => ({
-                    ...input,
-                    value: input.value || response.leftSuggestions[i] || '',
-                }))
-            );
+                setRightInputs(prev =>
+                    prev.map((input, i) =>
+                        i === 0 ? { ...input } : {
+                            ...input,
+                            value: input.value || response.rightSuggestions[i - 1] || ''
+                        }
+                    )
+                );
 
-            setRightInputs(prev =>
-                prev.map((input, i) => ({
-                    ...input,
-                    value: input.value || response.rightSuggestions[i] || '',
-                }))
-            );
-
-            onGenerated?.(
-                leftInputs.map(i => i.value),
-                rightInputs.map(i => i.value)
-            );
+            } else {
+                console.error(response)
+            }
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to generate suggestions');
         } finally {
@@ -76,17 +84,38 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
         }
     };
 
+    const onSubmit = () => {
+        resetInputs();
+        closeButtonRef.current?.click();
+
+        onGenerated?.(
+            leftInputs.map(i => i.value),
+            rightInputs.map(i => i.value),
+            axis
+        );
+    }
+
+    const canSubmit = () => {
+        return leftInputs.every((i) => i.value.length !== 0) && rightInputs.every((i) => i.value.length !== 0)
+    }
+
     return (
-        <Dialog>
+        <Dialog onOpenChange={(open) => {
+            if (!open) {
+                resetInputs();
+                onClose?.();
+            }
+        }}>
             <DialogTrigger asChild>
                 <button className="px-4 py-2 bg-blue-600 text-white rounded-md">
-                    Generate new axis
+                    Generate new {axis.toUpperCase()} axis
                 </button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
+            <DialogContent className="sm:max-w-[600px]" aria-description='modal to set axes' >
+                <DialogClose ref={closeButtonRef} className="hidden" />
                 <div className="p-6 bg-white rounded-lg shadow-lg">
                     <div className="mb-6">
-                        <h2 className="text-2xl font-bold mb-2">{axis} - Axis</h2>
+                        <h2 className="text-2xl font-bold mb-2">{axis.toUpperCase()} - Axis</h2>
                         <p className="text-gray-600">
                             Fill in a few words describing your opposing attributes and generate the rest
                         </p>
@@ -96,12 +125,6 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
                         <div className="text-sm text-gray-500">
                             Fill in at least one box in each column
                         </div>
-                        <button className={`px-4 py-2 rounded-md transition-colors ${canGenerate() && !isGenerating
-                            ? 'bg-blue-600 text-white hover:bg-blue-700'
-                            : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                            }`}>
-                            Submit
-                        </button>
                         <button
                             onClick={handleGenerate}
                             disabled={!canGenerate() || isGenerating}
@@ -112,6 +135,15 @@ export const AxisGeneratorModal: React.FC<AxisGeneratorModalProps> = ({
                             aria-busy={isGenerating}
                         >
                             {isGenerating ? 'Generating...' : 'Generate AI Suggestions'}
+                        </button>
+                        <button
+                            onClick={onSubmit}
+                            disabled={!canSubmit}
+                            className={`px-4 py-2 rounded-md transition-colors ${!isGenerating
+                                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                                : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                                }`}>
+                            Submit
                         </button>
                     </div>
 

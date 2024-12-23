@@ -1,5 +1,5 @@
 import { LucideIcon, Microscope, Wand } from "lucide-react";
-import { scientificFieldsData, fantasyArchetypesData, ArchetypeNode, fantasyArchetypesDataOnEvilVSGoodExternalVSInternal } from "./data";
+import { scientificFieldsData, fantasyArchetypesData, fantasyArchetypesDataOnEvilVSGoodExternalVSInternal } from "./data";
 
 export enum VisualizationNames {
     ScientificFields = 'Scientific Fields',
@@ -10,6 +10,27 @@ export enum AvailableGraphVisualizationOptions {
     Scatter = 'Scatter',
     Heatmap = 'Heatmap',
     TwoDimensionalPlot = '2D Plot',
+}
+
+export interface ArchetypeNode {
+    id: string;
+    name: string;
+    description: string;
+    tags: string[];
+    color: string;
+    x: number;
+    y: number;
+    originalEmbedding?: number[];
+}
+
+export interface DisplayNode {
+    id: string;
+    name: string;
+    description: string;
+    tags: string[];
+    color: string;
+    x: number;
+    y: number;
 }
 
 export function getAvailableGraphTypes(category: VisualizationCategory): AvailableGraphVisualizationOptions[] {
@@ -45,8 +66,8 @@ export interface GraphType {
 }
 
 export interface GraphConfig {
-    xAxis: { negative: string, positive: string }
-    yAxis: { negative: string, positive: string }
+    x: { negative: string, positive: string }
+    y: { negative: string, positive: string }
 }
 
 export const availableVisualizations: VisualizationCategory[] = [
@@ -62,16 +83,16 @@ export const availableVisualizations: VisualizationCategory[] = [
                 type: AvailableGraphVisualizationOptions.TwoDimensionalPlot,
                 getData: () => fantasyArchetypesDataOnEvilVSGoodExternalVSInternal,
                 config: {
-                    xAxis: { negative: 'evil', positive: 'good' },
-                    yAxis: { negative: 'external power', positive: 'internal power' }
+                    x: { negative: 'evil', positive: 'good' },
+                    y: { negative: 'external power', positive: 'internal power' }
                 }
             },
             {
                 type: AvailableGraphVisualizationOptions.Heatmap,
                 getData: () => fantasyArchetypesDataOnEvilVSGoodExternalVSInternal,
                 config: {
-                    xAxis: { negative: 'evil', positive: 'good' },
-                    yAxis: { negative: 'external power', positive: 'internal power' }
+                    x: { negative: 'evil', positive: 'good' },
+                    y: { negative: 'external power', positive: 'internal power' }
                 }
             }
         ]

@@ -5,14 +5,13 @@ import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, Cell, Label, Carte
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ArchetypeNode } from '@/lib/data';
-import { GraphConfig } from '@/lib/availableVisualizationOptions';
+import { ArchetypeNode, DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
-    nodeData: ArchetypeNode[]
-    selectedArchetype: ArchetypeNode | null
-    setSelectedArchetype: Dispatch<ArchetypeNode>
-    graphConfig?: GraphConfig
+    nodeData: DisplayNode[]
+    selectedArchetype: DisplayNode | null
+    setSelectedArchetype: Dispatch<DisplayNode>
+    graphConfig: GraphConfig | null
 }
 
 // Custom tooltip component
@@ -84,16 +83,16 @@ const ArchetypeViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetyp
                                     y={0}
                                     stroke="#FFFF00"
                                 >
-                                    <Label value="Evil" offset={30} position="left" />
-                                    <Label value="Good" offset={10} position="right" />
+                                    <Label value={graphConfig.x.negative} offset={30} position="left" />
+                                    <Label value={graphConfig.x.positive} offset={10} position="right" />
                                 </ReferenceLine>
                                 <ReferenceLine
                                     x={0}
                                     stroke="#FFFF00"
                                     label='y'
                                 >
-                                    <Label value="External" offset={30} position="bottom" />
-                                    <Label value="Internal" offset={15} position="top" />
+                                    <Label value={graphConfig.y.negative} offset={30} position="bottom" />
+                                    <Label value={graphConfig.y.positive} offset={15} position="top" />
                                 </ReferenceLine>
                             </>
                         )}

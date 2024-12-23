@@ -21,6 +21,8 @@ export async function generateAxisSuggestions(leftInputs: AxisInput[], rightInpu
                 rightInputs: rightInputs.map(i => i.value),
             }),
         });
+        console.log('api.ts')
+        console.log(response)
 
         if (!response.ok) {
             throw new Error('Failed to generate suggestions');
@@ -32,3 +34,4 @@ export async function generateAxisSuggestions(leftInputs: AxisInput[], rightInpu
         throw error;
     }
 }
+

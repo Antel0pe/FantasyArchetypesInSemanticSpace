@@ -5,20 +5,21 @@ import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, Cell, Label, Carte
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ArchetypeNode } from '@/lib/data';
-import { AvailableGraphVisualizationOptions, getAvailableGraphTypes, getDataForGraphType, GraphConfig, GraphType, VisualizationCategory, VisualizationNames } from '@/lib/availableVisualizationOptions';
+import { ArchetypeNode, AvailableGraphVisualizationOptions, DisplayNode, getAvailableGraphTypes, getDataForGraphType, GraphConfig, GraphType, VisualizationCategory, VisualizationNames } from '@/lib/availableVisualizationOptions';
 import ArchetypeViewer from './archetype-viewer';
 import HeatmapGraphViewer from './HeatmapGraphViewer';
 
 type Props = {
-    selectedArchetype: ArchetypeNode | null
-    setSelectedArchetype: Dispatch<ArchetypeNode>
+    displayData: DisplayNode[]
+    selectedArchetype: DisplayNode | null
+    setSelectedArchetype: Dispatch<DisplayNode>
     visualizationCategory: VisualizationCategory
     graphType: GraphType
+    graphConfig: GraphConfig | null
 }
 
 
-const BaseGraphViewer = ({ selectedArchetype, setSelectedArchetype, visualizationCategory, graphType }: Props) => {
+const BaseGraphViewer = ({ displayData, selectedArchetype, setSelectedArchetype, visualizationCategory, graphType, graphConfig }: Props) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
@@ -31,11 +32,11 @@ const BaseGraphViewer = ({ selectedArchetype, setSelectedArchetype, visualizatio
     }) => {
         switch (selectedType) {
             case AvailableGraphVisualizationOptions.Scatter:
-                return <ArchetypeViewer nodeData={getDataForGraphType(category, selectedType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphType.config} />;
+                return <ArchetypeViewer nodeData={displayData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphConfig} />;
             case AvailableGraphVisualizationOptions.Heatmap:
-                return <HeatmapGraphViewer nodeData={getDataForGraphType(category, selectedType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphType.config} />;
+                return <HeatmapGraphViewer nodeData={displayData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphConfig} />;
             case AvailableGraphVisualizationOptions.TwoDimensionalPlot:
-                return <ArchetypeViewer nodeData={getDataForGraphType(category, selectedType)} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphType.config}/>;
+                return <ArchetypeViewer nodeData={displayData} selectedArchetype={selectedArchetype} setSelectedArchetype={setSelectedArchetype} graphConfig={graphConfig}/>;
             default:
                 return <div>Unsupported graph type</div>;
         }

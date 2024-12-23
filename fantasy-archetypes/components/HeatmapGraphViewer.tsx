@@ -3,16 +3,15 @@
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import Plot from 'react-plotly.js';
 import { Card } from "@/components/ui/card";
-import { ArchetypeNode } from '@/lib/data';
 import { PlotMouseEvent } from 'plotly.js';
 import { X } from 'lucide-react';
-import { GraphConfig } from '@/lib/availableVisualizationOptions';
+import { DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
-    nodeData: ArchetypeNode[]
-    selectedArchetype: ArchetypeNode | null
-    setSelectedArchetype: Dispatch<ArchetypeNode>
-    graphConfig?: GraphConfig
+    nodeData: DisplayNode[]
+    selectedArchetype: DisplayNode | null
+    setSelectedArchetype: Dispatch<DisplayNode>
+    graphConfig: GraphConfig | null
 }
 
 const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetype, graphConfig }: Props) => {
@@ -157,7 +156,7 @@ const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArche
                                     y: 0,
                                     xref: 'x',
                                     yref: 'y',
-                                    text: graphConfig.xAxis.positive,
+                                    text: graphConfig.x.positive,
                                     showarrow: false,
                                     xanchor: 'left',
                                     yanchor: 'bottom',
@@ -168,7 +167,7 @@ const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArche
                                     y: 0,
                                     xref: 'x',
                                     yref: 'y',
-                                    text: graphConfig.xAxis.negative,
+                                    text: graphConfig.x.negative,
                                     showarrow: false,
                                     xanchor: 'right',
                                     yanchor: 'bottom',
@@ -180,7 +179,7 @@ const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArche
                                     y: ranges.y.max,
                                     xref: 'x',
                                     yref: 'y',
-                                    text: graphConfig.yAxis.positive,
+                                    text: graphConfig.y.positive,
                                     showarrow: false,
                                     xanchor: 'right',
                                     yanchor: 'top',
@@ -191,7 +190,7 @@ const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArche
                                     y: ranges.y.min,
                                     xref: 'x',
                                     yref: 'y',
-                                    text: graphConfig.yAxis.negative,
+                                    text: graphConfig.y.negative,
                                     showarrow: false,
                                     xanchor: 'right',
                                     yanchor: 'bottom',
