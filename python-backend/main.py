@@ -12,12 +12,13 @@ from fastapi.middleware.cors import CORSMiddleware
 load_dotenv()
 
 app = FastAPI(title="Word Embedding Analysis API")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("NODE_FRONTEND_URL")], 
+    allow_origins=[os.getenv("NODE_FRONTEND_URL"), "https://fantasy-archetypes-in-semantic-space.vercel.app", "http://localhost:3000"],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
 )
 
 # Initialize OpenAI client
