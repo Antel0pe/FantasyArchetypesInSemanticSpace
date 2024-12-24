@@ -1,2 +1,5 @@
 conda activate env
 fastapi dev main.py
+
+for freezing requirements.txt deps
+- pip list --format=freeze > requirements.txt

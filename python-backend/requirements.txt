@@ -1,82 +1,83 @@
-annotated-types @ file:///C:/b/abs_0dmaoyhhj3/croot/annotated-types_1709542968311/work
-anyio @ file:///C:/b/abs_31grv7a7bl/croot/anyio_1729121290992/work
+annotated-types==0.6.0
+anyio==4.6.2
 asttokens==2.4.1
-certifi @ file:///C:/b/abs_59o0xj7aav/croot/certifi_1734473304008/work/certifi
-cffi @ file:///C:/b/abs_90yq4lmu83/croot/cffi_1726856448345/work
-click @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/click_1699473800648/work
+certifi==2024.12.14
+cffi==1.17.1
+click==8.1.7
 colorama==0.4.6
 comm==0.2.2
-cryptography @ file:///C:/b/abs_e2lzchf4i6/croot/cryptography_1732130411942/work
+cryptography==43.0.3
 debugpy==1.8.5
 decorator==5.1.1
-distro @ file:///C:/b/abs_71xr36ua5r/croot/distro_1714488282676/work
-dnspython @ file:///C:/b/abs_449_z2xz29/croot/dnspython_1703097012342/work
-email_validator @ file:///home/conda/feedstock_root/build_artifacts/email-validator-meta_1733300719943/work
+distro==1.9.0
+dnspython==2.4.2
+email_validator==2.2.0
 executing==2.1.0
-fastapi @ file:///home/conda/feedstock_root/build_artifacts/fastapi_1733362299471/work
-fastapi-cli @ file:///home/conda/feedstock_root/build_artifacts/fastapi-cli_1734302308128/work
-h11 @ file:///C:/b/abs_1czwoyexjf/croot/h11_1706652332846/work
-httpcore @ file:///C:/b/abs_55n7g233bw/croot/httpcore_1706728507241/work
-httptools @ file:///C:/b/abs_10cpmfvnf8/croot/httptools_1732546890489/work
-httpx @ file:///C:/b/abs_43e135shby/croot/httpx_1723474830126/work
-idna @ file:///C:/b/abs_aad84bnnw5/croot/idna_1714398896795/work
+fastapi==0.115.6
+fastapi-cli==0.0.7
+h11==0.14.0
+httpcore==1.0.2
+httptools==0.6.4
+httpx==0.27.0
+idna==3.7
 ipykernel==6.29.5
 ipython==8.27.0
 jedi==0.19.1
-Jinja2 @ file:///C:/b/abs_ddyeze2h6_/croot/jinja2_1730903330414/work
-jiter @ file:///C:/b/abs_acsxrw36a6/croot/jiter_1729808947806/work
-joblib @ file:///C:/b/abs_f4b98l6lgk/croot/joblib_1718217224240/work
+Jinja2==3.1.4
+jiter==0.6.1
+joblib==1.4.2
 jupyter_client==8.6.2
 jupyter_core==5.7.2
-llvmlite @ file:///C:/b/abs_80rinyr2fr/croot/llvmlite_1720455223586/work
-markdown-it-py @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markdown-it-py_1699473886965/work
-MarkupSafe @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/markupsafe_1707425732791/work
+llvmlite==0.43.0
+markdown-it-py==2.2.0
+MarkupSafe==2.1.3
 matplotlib-inline==0.1.7
-mdurl @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/mdurl_1699473506455/work
+mdurl==0.1.0
+mkl_fft==1.3.11
+mkl_random==1.2.8
 mkl-service==2.4.0
-mkl_fft @ file:///C:/Users/dev-admin/mkl/mkl_fft_1730823082242/work
-mkl_random @ file:///C:/Users/dev-admin/mkl/mkl_random_1730822522280/work
 nest-asyncio==1.6.0
-numba @ file:///C:/b/abs_51yyu3qucu/croot/numba_1720540987599/work
-numpy @ file:///C:/b/abs_c1ywpu18ar/croot/numpy_and_numpy_base_1708638681471/work/dist/numpy-1.26.4-cp312-cp312-win_amd64.whl#sha256=becc06674317799ad0165a939a7613809d0bee9bd328a1e4308c57c39cacf08c
-openai @ file:///C:/b/abs_casb4ladn8/croot/openai_1730224443017/work
+numba==0.60.0
+numpy==1.26.4
+openai==1.52.1
 packaging==24.1
 parso==0.8.4
+pip==24.2
 platformdirs==4.3.2
 prompt_toolkit==3.0.47
 psutil==6.0.0
 pure_eval==0.2.3
-pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
-pydantic @ file:///C:/b/abs_27dx58x550/croot/pydantic_1734736090499/work
-pydantic_core @ file:///C:/b/abs_bdosz7qwys/croot/pydantic-core_1734726071532/work
+pycparser==2.21
+pydantic==2.10.3
+pydantic_core==2.27.1
 Pygments==2.18.0
-pynndescent @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/pynndescent_1707437672845/work
+pynndescent==0.5.10
 python-dateutil==2.9.0.post0
-python-dotenv @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/python-dotenv_1699475097728/work
-python-multipart @ file:///C:/b/abs_31h4mrhodq/croot/python-multipart_1722930334768/work
+python-dotenv==0.21.0
+python-multipart==0.0.9
 pywin32==306
-PyYAML @ file:///C:/b/abs_14xkfs39bx/croot/pyyaml_1728657968772/work
+PyYAML==6.0.2
 pyzmq==26.2.0
-rich @ file:///C:/b/abs_8b92fzmygg/croot/rich_1732638991774/work
-rich-toolkit @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_rich-toolkit_1733750834/work
-scikit-learn @ file:///C:/b/abs_69a_gdu9bf/croot/scikit-learn_1734547445211/work/dist/scikit_learn-1.5.2-cp312-cp312-win_amd64.whl#sha256=a97fb693c336a8e09ec23d91a4a6f12296f03b0b2b169460a0441c19f66b6b89
-scipy @ file:///C:/Users/dev-admin/cr_scipy-release/scipy_1731632527468/work/dist/scipy-1.14.1-cp312-cp312-win_amd64.whl#sha256=34653c6cd617d15590b20aad84b54b5f7f6ed8f683edeeadb2260696234ef19e
+rich==13.9.4
+rich-toolkit==0.11.3
+scikit-learn==1.5.2
+scipy==1.14.1
 setuptools==75.1.0
-shellingham @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/shellingham_1699475566718/work
+shellingham==1.5.0
 six==1.16.0
-sniffio @ file:///C:/b/abs_3akdewudo_/croot/sniffio_1705431337396/work
+sniffio==1.3.0
 stack-data==0.6.3
-starlette @ file:///home/conda/feedstock_root/build_artifacts/starlette_1733344384719/work
-threadpoolctl @ file:///C:/b/abs_def0dwqlft/croot/threadpoolctl_1719407816649/work
+starlette==0.41.3
+threadpoolctl==3.5.0
 tornado==6.4.1
-tqdm @ file:///C:/b/abs_77wju137gk/croot/tqdm_1724853945787/work
+tqdm==4.66.5
 traitlets==5.14.3
 typer==0.15.1
 typer-slim==0.15.1
-typing_extensions @ file:///C:/b/abs_0ffjxtihug/croot/typing_extensions_1734714875646/work
-umap-learn @ file:///D:/bld/umap-learn_1730221918810/work
-uvicorn @ file:///C:/b/abs_0a5pprsdq4/croot/uvicorn-split_1732662019530/work
-watchfiles @ file:///C:/b/abs_498lkbc06c/croot/watchfiles_1732647662605/work
+typing_extensions==4.12.2
+umap-learn==0.5.7
+uvicorn==0.32.1
+watchfiles==0.24.0
 wcwidth==0.2.13
-websockets @ file:///C:/Users/dev-admin/perseverance-python-buildout/croot/websockets_1699569915508/work
+websockets==10.4
 wheel==0.44.0
