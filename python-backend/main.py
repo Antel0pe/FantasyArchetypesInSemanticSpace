@@ -67,6 +67,24 @@ async def create_axis_endpoint(terms: TermLists):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/cosine-similarity", response_model=CoordinateResponse)
+async def get_cosine_similarity(
+    term: List[float],
+    describingTerms: EmbeddingInput,
+):
+    """Return cosine similarity of terms against embeddings"""
+    try:
+        coordinates = []
+        
+        for embedding in describingTerms.embeddings:
+            similarity = cosine_similarity([term, embedding])[0][1]
+            
+            coordinates.append(similarity)
+            
+        return {"coordinates": coordinates}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/analyze-embeddings", response_model=CoordinateResponse)
 async def analyze_embeddings(

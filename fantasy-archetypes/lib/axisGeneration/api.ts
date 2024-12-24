@@ -8,18 +8,47 @@ export interface TermLists {
     right_terms: string[];
 }
 
-export interface Coordinate {
-    value: number;
-}
-
 export interface CoordinateResponse {
-    coordinates: Coordinate[];
+    coordinates: number[];
 }
 
 export interface AxisCenters {
     evil_center: number[];
     good_center: number[];
 }
+
+export interface CosineSimilarityInput {
+    term: number[];
+    describingTerms: EmbeddingInput;
+}
+
+export async function getCosineSimilarity(
+    term: number[],
+    describingTerms: EmbeddingInput
+): Promise<CoordinateResponse> {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL}/cosine-similarity`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                term,
+                describingTerms,
+            }),
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to calculate cosine similarity');
+        }
+        
+        return await response.json() as CoordinateResponse;
+    } catch (error) {
+        console.error('Cosine similarity API call failed:', error);
+        throw error;
+    }
+}
+
 
 // Main API functions
 export async function createAxis(terms: TermLists): Promise<AxisCenters> {
