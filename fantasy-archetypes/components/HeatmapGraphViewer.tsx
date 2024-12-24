@@ -1,11 +1,9 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
+import React, { Dispatch, useEffect, useMemo, useState } from 'react';
 import Plot from 'react-plotly.js';
-import { Card } from "@/components/ui/card";
 import { PlotMouseEvent } from 'plotly.js';
-import { X } from 'lucide-react';
-import { ArchetypeNode, DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
+import { ArchetypeNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
     nodeData: ArchetypeNode[]
@@ -14,7 +12,7 @@ type Props = {
     graphConfig: GraphConfig | null
 }
 
-const HeatmapGraphViewer = ({ nodeData = [], selectedArchetype, setSelectedArchetype, graphConfig }: Props) => {
+const HeatmapGraphViewer = ({ nodeData = [], setSelectedArchetype, graphConfig }: Props) => {
     const [isMounted, setIsMounted] = useState(false);
 
     const ranges = useMemo(() => {

@@ -1,17 +1,16 @@
 "use client"
 
 import { useCallback, useEffect, useState } from 'react'
-import { Menu, Twitter, Microscope, Wand } from 'lucide-react'
+import { Menu, Twitter } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import ArchetypeViewer from '@/components/archetype-viewer'
 import GraphCardInformation from '@/components/GraphCardInformation'
-import { ArchetypeNode, AvailableGraphVisualizationOptions, availableVisualizations, DisplayNode, getAvailableGraphTypes, getDataForGraphType, getGraphType, GraphConfig } from '@/lib/availableVisualizationOptions'
+import { ArchetypeNode, AvailableGraphVisualizationOptions, availableVisualizations, getAvailableGraphTypes, getDataForGraphType, getGraphType, GraphConfig } from '@/lib/availableVisualizationOptions'
 import GraphViewOptions from '@/components/GraphViewOptions'
 import BaseGraphViewer from '@/components/BaseGraphViewer'
 import AxisGeneratorModal from '@/components/AxisGeneratorModal'
-import { completeAnalysis, createAxis, EmbeddingInput } from '@/lib/axisGeneration/api'
+import { completeAnalysis } from '@/lib/axisGeneration/api'
 import DataGeneratorModal from '@/components/DataGeneratorModal'
 import { EmbeddingsResponse } from './api/generate-embeddings/route'
 
@@ -61,7 +60,7 @@ export default function VisualizationSwitcher() {
         const nodesWithEmbeddings = nodes
             .filter((d) => d.originalEmbedding !== undefined);
 
-        let originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
+        const originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
 
         let newEmbeds;
         try {
@@ -117,9 +116,9 @@ export default function VisualizationSwitcher() {
         const nodesWithEmbeddings = displayData
             .filter((d) => d.originalEmbedding !== undefined);
 
-        let originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
+        const originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
 
-        let newEmbeds = await completeAnalysis({
+        const newEmbeds = await completeAnalysis({
             left_terms: left,
             right_terms: right
         }, { embeddings: originalEmbeddingData });

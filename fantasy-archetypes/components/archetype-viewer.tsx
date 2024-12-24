@@ -1,11 +1,9 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, useEffect, useState } from 'react';
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, Cell, Label, CartesianGrid, ReferenceLine } from 'recharts';
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { ArchetypeNode, DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
+import { ArchetypeNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
     nodeData: ArchetypeNode[]
@@ -14,8 +12,17 @@ type Props = {
     graphConfig: GraphConfig | null
 }
 
+type CustomTooltipProps = {
+    active?: boolean;
+    payload?: {
+      payload: ArchetypeNode & {
+        z: number;
+      };
+    }[];
+  }
+
 // Custom tooltip component
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
         const data = payload[0].payload;
         return (

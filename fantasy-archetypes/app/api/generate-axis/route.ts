@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { NextResponse } from 'next/server';
-import { generateObject, streamObject } from 'ai';
+import { generateObject } from 'ai';
 import { openai } from '@ai-sdk/openai';
 
 

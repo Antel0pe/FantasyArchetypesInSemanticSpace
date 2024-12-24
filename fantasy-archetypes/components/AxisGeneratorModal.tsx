@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { generateAxisSuggestions, AxisInput, GeneratedResponse } from '../lib/api';
-import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from './ui/dialog';
+import React, { useState, useCallback, useRef } from 'react';
+import { generateAxisSuggestions, AxisInput } from '../lib/api';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from './ui/dialog';
 
 interface AxisGeneratorModalProps {
     axis: 'x' | 'y';

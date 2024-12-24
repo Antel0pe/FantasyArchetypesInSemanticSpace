@@ -1,13 +1,9 @@
 'use client';
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, Cell, Label, CartesianGrid, ReferenceLine } from 'recharts';
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import React, { Dispatch, useEffect, useState } from 'react';
 import { Card } from "@/components/ui/card";
-import { ArchetypeNode, AvailableGraphVisualizationOptions, DisplayNode, getAvailableGraphTypes, getDataForGraphType, GraphConfig, GraphType, VisualizationCategory, VisualizationNames } from '@/lib/availableVisualizationOptions';
-import ArchetypeViewer from './archetype-viewer';
-import HeatmapGraphViewer from './HeatmapGraphViewer';
+import { ArchetypeNode, AvailableGraphVisualizationOptions, GraphConfig, GraphType, VisualizationCategory } from '@/lib/availableVisualizationOptions';
+import dynamic from 'next/dynamic';
 
 type Props = {
     displayData: ArchetypeNode[]
@@ -18,16 +14,18 @@ type Props = {
     graphConfig: GraphConfig | null
 }
 
+// Dynamically import the visualization components with SSR disabled
+const ArchetypeViewer = dynamic(() => import('./archetype-viewer'), { ssr: false });
+const HeatmapGraphViewer = dynamic(() => import('./HeatmapGraphViewer'), { ssr: false });
 
-const BaseGraphViewer = ({ displayData, selectedArchetype, setSelectedArchetype, visualizationCategory, graphType, graphConfig }: Props) => {
+const BaseGraphViewer = ({ displayData, selectedArchetype, setSelectedArchetype, graphType, graphConfig }: Props) => {
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
-    const GraphComponent = ({ category, selectedType }: { 
-        category: VisualizationCategory, 
+    const GraphComponent = ({selectedType }: { 
         selectedType: AvailableGraphVisualizationOptions 
     }) => {
         switch (selectedType) {
@@ -52,7 +50,7 @@ const BaseGraphViewer = ({ displayData, selectedArchetype, setSelectedArchetype,
                         <div className="w-full h-full bg-gray-800/50" />
                     </div>
                 ) : (
-                        <GraphComponent category={visualizationCategory} selectedType={graphType.type} />
+                        <GraphComponent selectedType={graphType.type} />
                 )}
             </Card>
 

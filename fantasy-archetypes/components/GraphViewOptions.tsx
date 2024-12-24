@@ -1,7 +1,6 @@
-import { Dispatch, useEffect, useState } from "react";
+import { Dispatch } from "react";
 import { Button } from "./ui/button";
-import { ArchetypeNode } from "@/lib/data";
-import { AvailableGraphVisualizationOptions, availableVisualizations, VisualizationNames } from "@/lib/availableVisualizationOptions";
+import { AvailableGraphVisualizationOptions, } from "@/lib/availableVisualizationOptions";
 
 type Props = {
     availableVisualizationOptions: AvailableGraphVisualizationOptions[] | null

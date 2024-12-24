@@ -1,4 +1,4 @@
-import { ArchetypeNode } from "@/lib/data";
+import { ArchetypeNode } from "@/lib/availableVisualizationOptions";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 

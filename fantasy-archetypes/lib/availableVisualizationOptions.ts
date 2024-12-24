@@ -1,5 +1,5 @@
-import { LucideIcon, Microscope, Wand } from "lucide-react";
-import { scientificFieldsData, fantasyArchetypesData, fantasyArchetypesDataOnEvilVSGoodExternalVSInternal } from "./data";
+import { LucideIcon, Wand } from "lucide-react";
+import { fantasyArchetypesDataOnEvilVSGoodExternalVSInternal } from "./data";
 
 export enum VisualizationNames {
     ScientificFields = 'Scientific Fields',
