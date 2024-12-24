@@ -3,3 +3,4 @@ fastapi dev main.py
 
 for freezing requirements.txt deps
 - pip list --format=freeze > requirements.txt
+- remove mkl-*, pywin32 libraries since they are windows specific
