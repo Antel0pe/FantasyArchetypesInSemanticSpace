@@ -8,9 +8,9 @@ import { Card } from "@/components/ui/card";
 import { ArchetypeNode, DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
-    nodeData: DisplayNode[]
-    selectedArchetype: DisplayNode | null
-    setSelectedArchetype: Dispatch<DisplayNode>
+    nodeData: ArchetypeNode[]
+    selectedArchetype: ArchetypeNode | null
+    setSelectedArchetype: Dispatch<ArchetypeNode>
     graphConfig: GraphConfig | null
 }
 

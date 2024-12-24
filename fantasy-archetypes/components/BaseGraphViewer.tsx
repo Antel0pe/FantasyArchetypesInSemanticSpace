@@ -10,9 +10,9 @@ import ArchetypeViewer from './archetype-viewer';
 import HeatmapGraphViewer from './HeatmapGraphViewer';
 
 type Props = {
-    displayData: DisplayNode[]
-    selectedArchetype: DisplayNode | null
-    setSelectedArchetype: Dispatch<DisplayNode>
+    displayData: ArchetypeNode[]
+    selectedArchetype: ArchetypeNode | null
+    setSelectedArchetype: Dispatch<ArchetypeNode>
     visualizationCategory: VisualizationCategory
     graphType: GraphType
     graphConfig: GraphConfig | null

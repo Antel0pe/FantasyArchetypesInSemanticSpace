@@ -12,6 +12,8 @@ import GraphViewOptions from '@/components/GraphViewOptions'
 import BaseGraphViewer from '@/components/BaseGraphViewer'
 import AxisGeneratorModal from '@/components/AxisGeneratorModal'
 import { completeAnalysis, createAxis, EmbeddingInput } from '@/lib/axisGeneration/api'
+import DataGeneratorModal from '@/components/DataGeneratorModal'
+import { EmbeddingsResponse } from './api/generate-embeddings/route'
 
 
 
@@ -19,23 +21,24 @@ export default function VisualizationSwitcher() {
     const [activeViz, setActiveViz] = useState(availableVisualizations[0])
     const [sidebarOpen, setSidebarOpen] = useState(true)
     const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeNode | null>(null);
-    const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions>(AvailableGraphVisualizationOptions.Scatter);
-    const [displayData, setDisplayData] = useState<DisplayNode[]>([])
-    const [graphConfig, setGraphConfig] = useState<GraphConfig | null>(null);
+    const [visualizationType, setVisualizationType] = useState<AvailableGraphVisualizationOptions>(AvailableGraphVisualizationOptions.TwoDimensionalPlot);
+    const [displayData, setDisplayData] = useState<ArchetypeNode[]>(getDataForGraphType(activeViz, visualizationType))
+    const [graphConfig, setGraphConfig] = useState<GraphConfig | null>(getGraphType(activeViz, visualizationType).config ?? null);
 
     useEffect(() => {
-        setDisplayData(getDataForGraphType(activeViz, visualizationType)
-            .map(({ id, name, description, tags, color, x, y }) =>
-                ({ id, name, description, tags, color, x, y })));
+        console.log('updating display data from useeffect')
+        setDisplayData(getDataForGraphType(activeViz, visualizationType));
+    }, [activeViz, visualizationType])
 
+    useEffect(() => {
         // only update config if no config existed before
         // currently with fantasyArchetype data only changes from scatter to 2d/heatmap
         if (!graphConfig) {
             console.log('updating graph config')
             console.log('prev ' + JSON.stringify(graphConfig))
-            setGraphConfig(getGraphType(activeViz, visualizationType).config ?? null);            
+            setGraphConfig(getGraphType(activeViz, visualizationType).config ?? null);
         }
-    }, [activeViz, visualizationType]) 
+    }, [activeViz, visualizationType, graphConfig])
 
     const handleVizChange = (newViz: typeof activeViz) => {
         setActiveViz(newViz);
@@ -46,8 +49,72 @@ export default function VisualizationSwitcher() {
         if (window.innerWidth < 1024) setSidebarOpen(false);
     };
 
+    const onNewAxisGeneratedWithDisplayData = useCallback(async (nodes: ArchetypeNode[], left: string[], right: string[], axis: 'x' | 'y') => {
+        if (!graphConfig) {
+            console.error('No graph config!');
+            return nodes;
+        }
+
+        console.log('in axis generator, using display data')
+        console.log(nodes)
+
+        const nodesWithEmbeddings = nodes
+            .filter((d) => d.originalEmbedding !== undefined);
+
+        let originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
+
+        let newEmbeds;
+        try {
+            newEmbeds = await completeAnalysis({
+                left_terms: left,
+                right_terms: right
+            }, { embeddings: originalEmbeddingData });
+        } catch (error) {
+            console.error('Analysis failed:', error);
+            return nodes; // Return original nodes on error
+        }
+
+        console.log(newEmbeds);
+
+        const updatedNodes = nodes.map(node => {
+            const nodeIndex = nodesWithEmbeddings.findIndex(n => n.id === node.id);
+            if (nodeIndex === -1) return node;  // Keep unchanged if no embedding
+
+            return {
+                ...node,
+                [axis]: newEmbeds.coordinates[nodeIndex]
+            };
+        });
+
+        if (graphConfig) {
+            setGraphConfig((prevConfig) => {
+                if (!prevConfig) return null;  // TypeScript guard
+                return {
+                    x: prevConfig.x,  // Keep existing x values
+                    y: prevConfig.y,  // Keep existing y values
+                    [axis]: {
+                        negative: left[0],
+                        positive: right[0],
+                        negativeTerms: left, 
+                        positiveTerms: right,
+                    }
+                };
+            });
+        }
+
+        return updatedNodes;
+
+    }, [graphConfig])
+
     const onNewAxisGenerated = useCallback(async (left: string[], right: string[], axis: 'x' | 'y') => {
-        const nodesWithEmbeddings = getDataForGraphType(activeViz, visualizationType)
+        if (!graphConfig) {
+            console.error('No graph config!');
+        }
+
+        console.log('in axis generator, using display data')
+        console.log(displayData)
+
+        const nodesWithEmbeddings = displayData
             .filter((d) => d.originalEmbedding !== undefined);
 
         let originalEmbeddingData = nodesWithEmbeddings.map((d) => d.originalEmbedding as number[]);
@@ -77,13 +144,38 @@ export default function VisualizationSwitcher() {
                     y: prevConfig.y,  // Keep existing y values
                     [axis]: {
                         negative: left[0],
-                        positive: right[0]
+                        positive: right[0],
+                        negativeTerms: left, 
+                        positiveTerms: right,
                     }
                 };
             });
         }
 
-    }, [activeViz, visualizationType, graphConfig])
+    }, [graphConfig, displayData])
+
+    const onNewDataPointsGenerated = useCallback(async (embeddingResponse: EmbeddingsResponse) => {
+        const newArchetypeNodes: ArchetypeNode[] = Object.entries(embeddingResponse.embeddings).map(([name, embedding], idx) => ({
+            id: idx.toString(), // Generate unique ID for each node
+            name: name,
+            description: name, // Using name as description, can be modified if needed
+            tags: [], // Empty tags array, can be populated if needed
+            color: '#FF5733',
+            x: 0, // Initial position, will be updated based on embedding
+            y: 0,
+            originalEmbedding: embedding
+        }));
+
+        if (graphConfig) {
+            console.log('Regenerating axis coordinates')
+            // Sequential axis calculations
+            let nodes = await onNewAxisGeneratedWithDisplayData(newArchetypeNodes, graphConfig.x.negativeTerms, graphConfig.x.positiveTerms, 'x');
+            nodes = await onNewAxisGeneratedWithDisplayData(nodes, graphConfig.y.negativeTerms, graphConfig.y.positiveTerms, 'y');
+            console.log('updated nodes = ')
+            console.log(nodes)
+            setDisplayData(nodes);
+        }
+    }, [graphConfig, onNewAxisGeneratedWithDisplayData])
 
     return (
         <div className="relative h-screen bg-background overflow-hidden">
@@ -197,6 +289,7 @@ export default function VisualizationSwitcher() {
                                     <div>
                                         <AxisGeneratorModal axis={'x'} onGenerated={onNewAxisGenerated} onClose={() => null} />
                                         <AxisGeneratorModal axis={'y'} onGenerated={onNewAxisGenerated} onClose={() => null} />
+                                        <DataGeneratorModal onGeneration={onNewDataPointsGenerated} />
                                     </div>
                                 )}
                             </div>

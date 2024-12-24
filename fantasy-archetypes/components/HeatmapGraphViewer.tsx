@@ -5,12 +5,12 @@ import Plot from 'react-plotly.js';
 import { Card } from "@/components/ui/card";
 import { PlotMouseEvent } from 'plotly.js';
 import { X } from 'lucide-react';
-import { DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
+import { ArchetypeNode, DisplayNode, GraphConfig } from '@/lib/availableVisualizationOptions';
 
 type Props = {
-    nodeData: DisplayNode[]
-    selectedArchetype: DisplayNode | null
-    setSelectedArchetype: Dispatch<DisplayNode>
+    nodeData: ArchetypeNode[]
+    selectedArchetype: ArchetypeNode | null
+    setSelectedArchetype: Dispatch<ArchetypeNode>
     graphConfig: GraphConfig | null
 }
 

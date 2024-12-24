@@ -38,20 +38,22 @@ export function getAvailableGraphTypes(category: VisualizationCategory): Availab
 }
 
 export function getDataForGraphType(
-    category: VisualizationCategory, 
+    category: VisualizationCategory,
     type: AvailableGraphVisualizationOptions
 ): ArchetypeNode[] {
     return getGraphType(category, type).getData();
 }
 
 export function getGraphType(
-    category: VisualizationCategory, 
+    category: VisualizationCategory,
     type: AvailableGraphVisualizationOptions
 ): GraphType {
     const graphType = category.supportedGraphTypes.find(st => st.type === type);
     if (!graphType) throw new Error(`Graph type ${type} not supported for ${category.name}`);
     return graphType;
 }
+
+
 
 export interface VisualizationCategory {
     name: VisualizationNames;
@@ -66,8 +68,8 @@ export interface GraphType {
 }
 
 export interface GraphConfig {
-    x: { negative: string, positive: string }
-    y: { negative: string, positive: string }
+    x: { negative: string, positive: string, negativeTerms: string[], positiveTerms: string[] }
+    y: { negative: string, positive: string, negativeTerms: string[], positiveTerms: string[] }
 }
 
 export const availableVisualizations: VisualizationCategory[] = [
@@ -75,36 +77,62 @@ export const availableVisualizations: VisualizationCategory[] = [
         name: VisualizationNames.FantasyArchetypes,
         icon: Wand,
         supportedGraphTypes: [
-            {
-                type: AvailableGraphVisualizationOptions.Scatter,
-                getData: () => fantasyArchetypesData
-            },
+            // {
+            //     type: AvailableGraphVisualizationOptions.Scatter,
+            //     getData: () => fantasyArchetypesData
+            // },
             {
                 type: AvailableGraphVisualizationOptions.TwoDimensionalPlot,
                 getData: () => fantasyArchetypesDataOnEvilVSGoodExternalVSInternal,
                 config: {
-                    x: { negative: 'evil', positive: 'good' },
-                    y: { negative: 'external power', positive: 'internal power' }
+                    x: {
+                        negative: 'evil', positive: 'good', negativeTerms: [
+                            "evil", "wicked", "malevolent", "corrupt", "vile",
+                            "sinister", "cruel", "malicious", "nefarious", "villainous",
+                            "villain", "tyrant", "monster", "demon", "criminal"
+                        ],
+                        positiveTerms: ["good", "virtuous", "noble", "benevolent", "righteous",
+                            "ethical", "moral", "kind", "honorable", "just",
+                            "hero", "saint", "benefactor", "altruist", "humanitarian"]
+                    },
+                    y: {
+                        negative: 'external power', positive: 'internal power', negativeTerms: ['internal power',
+                            "channeled", "borrowed", "bestowed", "granted", "drawn",
+                            "bound", "invoked", "contracted", "acquired", "gifted",
+                            "learned", "oath-bound", "wielded", "blessed", "harnessed"
+                        ],
+                        positiveTerms: ['external power',
+                            "innate", "self-derived", "inherent", "inborn", "natural",
+                            "willpower", "birthright", "awakened", "destined", "self-mastered",
+                            "intrinsic", "soul-bound", "primal", "self-taught", "instinctive"
+                        ]
+                    }
                 }
             },
             {
                 type: AvailableGraphVisualizationOptions.Heatmap,
                 getData: () => fantasyArchetypesDataOnEvilVSGoodExternalVSInternal,
                 config: {
-                    x: { negative: 'evil', positive: 'good' },
-                    y: { negative: 'external power', positive: 'internal power' }
+                    x: {
+                        negative: 'evil', positive: 'good', negativeTerms: ['d'],
+                        positiveTerms: ['a']
+                    },
+                    y: {
+                        negative: 'external power', positive: 'internal power', negativeTerms: ['d'],
+                        positiveTerms: ['a']
+                    }
                 }
             }
         ]
     },
-    {
-        name: VisualizationNames.ScientificFields,
-        icon: Microscope,
-        supportedGraphTypes: [
-            {
-                type: AvailableGraphVisualizationOptions.Scatter,
-                getData: () => scientificFieldsData
-            }
-        ]
-    },
+    // {
+    //     name: VisualizationNames.ScientificFields,
+    //     icon: Microscope,
+    //     supportedGraphTypes: [
+    //         {
+    //             type: AvailableGraphVisualizationOptions.Scatter,
+    //             getData: () => scientificFieldsData
+    //         }
+    //     ]
+    // },
 ]
