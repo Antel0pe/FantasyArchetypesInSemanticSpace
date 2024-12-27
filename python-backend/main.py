@@ -7,11 +7,13 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+from umap import UMAP
 
 # Load environment variables
 load_dotenv()
 
 app = FastAPI(title="Word Embedding Analysis API")
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -125,3 +127,69 @@ async def complete_analysis(
         return analysis
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+    
+class UMAPParams(BaseModel):
+    embeddings: List[List[float]]
+    neighborCount: int
+    minDist: float
+    distanceMeasure: str
+
+class Point(BaseModel):
+    x: float
+    y: float
+    
+@app.post("/umap", response_model=List[Point])
+async def reduce_dimensions(params: UMAPParams):
+    """
+    Reduce dimensions of embeddings using UMAP with specified parameters.
+    Returns list of points with x,y coordinates.
+    
+    Args:
+        params: UMAPParams object containing:
+            embeddings: List of embedding vectors
+            neighborCount: Number of neighbors for UMAP
+            minDist: Minimum distance between points
+            distanceMeasure: Distance metric to use ('euclidean', 'manhattan', etc.)
+    
+    Returns:
+        List of Point objects containing x,y coordinates
+    """
+    print(params.neighborCount)
+    print(params.minDist)
+    print(params.distanceMeasure)
+    try:
+        # Convert embeddings to numpy array
+        embeddings_array = np.array(params.embeddings)
+        
+        # Initialize UMAP
+        reducer = UMAP(
+            n_neighbors=params.neighborCount,
+            min_dist=params.minDist,
+            metric=params.distanceMeasure,
+            n_components=2,
+            random_state=42
+        )
+        
+        # Perform reduction
+        reduced = reducer.fit_transform(embeddings_array)
+        print(reduced)
+        
+        # Convert to list of Point objects
+        points = [
+            Point(x=float(x), y=float(y)) 
+            for x, y in reduced
+        ]
+        
+        return points
+        
+    except ValueError as ve:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"Invalid parameters: {str(ve)}"
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Error during dimension reduction: {str(e)}"
+        )

@@ -35,3 +35,38 @@ export async function generateAxisSuggestions(leftInputs: AxisInput[], rightInpu
     }
 }
 
+export interface UMAPParams {
+    embeddings: number[][];
+    neighborCount: number;
+    minDist: number;
+    distanceMeasure: string;
+}
+
+export interface Point {
+    x: number;
+    y: number;
+}
+
+export async function getUMAPCoordinates(params: UMAPParams): Promise<Point[]> {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL}/umap`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(params),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.detail || 'Failed to get UMAP coordinates');
+        }
+
+        const data: Point[] = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error getting UMAP coordinates:', error);
+        throw error;
+    }
+}
+
