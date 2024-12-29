@@ -1,0 +1,207 @@
+"use client"
+
+import React, { useState, useMemo } from "react"
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from "recharts"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Slider } from "@/components/ui/slider"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
+
+// Mock data for the scatter plot
+const data = [
+    { x: 10, y: 30, name: "Point A", category: "Group 1" },
+    { x: 40, y: 50, name: "Point B", category: "Group 1" },
+    { x: 70, y: 20, name: "Point C", category: "Group 2" },
+    { x: 30, y: 80, name: "Point D", category: "Group 2" },
+    { x: 50, y: 60, name: "Point E", category: "Group 3" },
+    { x: 80, y: 40, name: "Point F", category: "Group 3" },
+    { x: 20, y: 70, name: "Point G", category: "Group 1" },
+    { x: 60, y: 10, name: "Point H", category: "Group 2" },
+]
+
+const chartConfig = {
+    desktop: {
+        label: "Desktop",
+        color: "#2563eb",
+    },
+    mobile: {
+        label: "Mobile",
+        color: "#60a5fa",
+    },
+} satisfies ChartConfig
+
+// Custom tooltip component for hover
+const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] }) => {
+    if (active && payload && payload.length) {
+        const data = payload[0].payload
+        return (
+            <Card className="p-2 shadow-lg bg-white">
+                <CardHeader className="p-2">
+                    <CardTitle className="text-lg">{data.name}</CardTitle>
+                    <CardDescription>{data.category}</CardDescription>
+                </CardHeader>
+                <CardContent className="p-2">
+                    <p className="text-sm">X: {data.x}</p>
+                    <p className="text-sm">Y: {data.y}</p>
+                </CardContent>
+            </Card>
+        )
+    }
+    return null
+}
+
+interface PointData {
+    x: number,
+    y: number,
+    name: string,
+    category: string,
+}
+
+type Props = {
+    data: PointData[]
+}
+
+export default function ScatterPlotWithGridLayout({ data }: Props) {
+    const [sliders, setSliders] = useState([
+        { id: 'x', name: 'X Value', value: 50 },
+        { id: 'y', name: 'Y Value', value: 50 }
+    ])
+    const [newSliderName, setNewSliderName] = useState('')
+    const [isAddingSlider, setIsAddingSlider] = useState(false)
+
+    const selectedPoint = useMemo(() => {
+        const [xSlider, ySlider] = sliders
+        return data.reduce((closest, point) => {
+            const distance = Math.sqrt(Math.pow(point.x - xSlider.value, 2) + Math.pow(point.y - ySlider.value, 2))
+            if (!closest || distance < closest.distance) {
+                return { ...point, distance }
+            }
+            return closest
+        }, null as (typeof data[0] & { distance: number }) | null)
+    }, [sliders])
+
+    const customizedData = useMemo(() => {
+        const [xSlider, ySlider] = sliders
+        return data.map(point => ({
+            ...point,
+            fill: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? "var(--color-mobile)" : "var(--color-desktop)",
+            stroke: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? "var(--color-mobile)" : "var(--color-desktop)",
+            strokeWidth: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? 2 : 0,
+        }))
+    }, [selectedPoint, sliders])
+
+    const handleSliderChange = (id: string, newValue: number) => {
+        setSliders(prevSliders =>
+            prevSliders.map(slider =>
+                slider.id === id ? { ...slider, value: newValue } : slider
+            )
+        )
+    }
+
+    const handleAddSlider = () => {
+        if (newSliderName.trim()) {
+            const newId = `slider-${sliders.length}`
+            setSliders([...sliders, { id: newId, name: newSliderName.trim(), value: 50 }])
+            setNewSliderName('')
+            setIsAddingSlider(false)
+        }
+    }
+
+    return (
+        <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
+            <Card className="col-span-1">
+                <CardHeader>
+                    <CardTitle>Adjust Values</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="space-y-4">
+                        {sliders.map(slider => (
+                            <div key={slider.id}>
+                                <label htmlFor={slider.id} className="block text-sm font-medium text-gray-700 mb-1">
+                                    {slider.name}: {slider.value}
+                                </label>
+                                <Slider
+                                    id={slider.id}
+                                    min={0}
+                                    max={100}
+                                    step={1}
+                                    value={[slider.value]}
+                                    onValueChange={(value) => handleSliderChange(slider.id, value[0])}
+                                />
+                            </div>
+                        ))}
+                        {isAddingSlider ? (
+                            <div className="space-y-2">
+                                <Input
+                                    type="text"
+                                    placeholder="Enter slider name"
+                                    value={newSliderName}
+                                    onChange={(e) => setNewSliderName(e.target.value)}
+                                />
+                                <Button onClick={handleAddSlider} className="mr-2">Done</Button>
+                                <Button variant="outline" onClick={() => setIsAddingSlider(false)}>Cancel</Button>
+                            </div>
+                        ) : (
+                            <Button onClick={() => setIsAddingSlider(true)}>Add Slider</Button>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Card className="col-span-1">
+                <CardHeader>
+                    <CardTitle>Selected Point Info</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    {selectedPoint ? (
+                        <div>
+                            <p className="font-bold">{selectedPoint.name}</p>
+                            <p>Category: {selectedPoint.category}</p>
+                            <p>X: {selectedPoint.x}</p>
+                            <p>Y: {selectedPoint.y}</p>
+                        </div>
+                    ) : (
+                        <p>No point selected</p>
+                    )}
+                </CardContent>
+            </Card>
+
+            <Card className="col-span-2">
+                <CardHeader>
+                    <CardTitle>Scatter Plot with Interactive Sliders</CardTitle>
+                    <CardDescription>Adjust sliders to select the closest point</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ChartContainer config={chartConfig} className="h-[400px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                                <CartesianGrid />
+                                <XAxis
+                                    type="number"
+                                    dataKey="x"
+                                    name="X Axis"
+                                    domain={[0, 100]}
+                                    label={{ value: "X Axis", position: 'bottom', offset: 0 }}
+                                />
+                                <YAxis
+                                    type="number"
+                                    dataKey="y"
+                                    name="Y Axis"
+                                    domain={[0, 100]}
+                                    label={{ value: "Y Axis", angle: -90, position: 'left' }}
+                                />
+                                <Tooltip content={<CustomTooltip />} />
+                                <Scatter
+                                    name="Data Points"
+                                    data={customizedData}
+                                />
+                            </ScatterChart>
+                        </ResponsiveContainer>
+                    </ChartContainer>
+                </CardContent>
+            </Card>
+        </div>
+    )
+}
+
