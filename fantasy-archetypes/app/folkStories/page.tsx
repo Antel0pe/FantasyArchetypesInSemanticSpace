@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import ScatterPlotWithTooltip, { PointData } from '@/components/scatterplot-with-axis-change';
-import { DataPoint, getAxisInterpretation } from '@/lib/api';
+import { AxisInterpretation, DataPoint, getAxisInterpretation } from '@/lib/api';
 
 // Types for our data
 export interface FolkStory {
@@ -33,6 +33,8 @@ export default function Page() {
     const [processedPoints, setProcessedPoints] = useState<PointData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [xLabel, setXLabel] = useState<AxisInterpretation>({ positive: 'X', negative: 'X', oneWordDescription: 'X'})
+    const [yLabel, setYLabel] = useState<AxisInterpretation>({ positive: 'Y', negative: 'Y', oneWordDescription: 'Y'})
 
     // Function to compute PCA
     const computePCA = async (embeddings: number[][]): Promise<PCAResponse> => {
@@ -69,19 +71,24 @@ export default function Page() {
     };
 
     const getAxisLabels = async (points: PointData[], stories: FolkStory[]) => {
+        let resX = await getAxisInterpretation(createDataRequest(points, stories, 'x'));
+        setXLabel(resX)
+
+        let resY = await getAxisInterpretation(createDataRequest(points, stories, 'y'));
+        setYLabel(resY)
+    }
+
+    const createDataRequest = (points: PointData[], stories: FolkStory[], coordinate: 'x' | 'y') => {
         let data: DataPoint[] = [];
 
         for (let i = 0; i < stories.length; i++){
             data.push({
-                x: points[i].x.toFixed(3),
+                x: points[i][coordinate].toFixed(3),
                 text: `Title: ${stories[i].title}  Genre: ${stories[i].genre} From: ${stories[i].source} in ${stories[i].region}`
             })
         }
 
-        data.sort((a, b) => parseFloat(a.x) - parseFloat(b.x))
-        console.log(data)
-        let res = await getAxisInterpretation(data);
-        console.log(res);
+        return data.toSorted((a, b) => parseFloat(a.x) - parseFloat(b.x))
     }
 
     useEffect(() => {
@@ -145,7 +152,7 @@ export default function Page() {
     return (
         <div className="p-4">
             {processedPoints.length > 0 ? (
-                <ScatterPlotWithTooltip data={processedPoints} />
+                <ScatterPlotWithTooltip data={processedPoints} xLabel={xLabel} yLabel={yLabel} />
             ) : (
                 <p className="text-center text-gray-600">No stories found</p>
             )}

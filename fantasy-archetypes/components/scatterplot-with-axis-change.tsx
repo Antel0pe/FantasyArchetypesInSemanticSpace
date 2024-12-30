@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
 import debounce from 'debounce';
+import { AxisInterpretation } from '@/lib/api';
 
 const chartConfig = {
     desktop: {
@@ -49,16 +50,18 @@ export interface PointData {
 
 type Props = {
     data: PointData[]
+    xLabel: AxisInterpretation
+    yLabel: AxisInterpretation
 }
 
-export default function ScatterPlotWithGridLayout({ data }: Props) {
+export default function ScatterPlotWithGridLayout({ data, xLabel, yLabel }: Props) {
     const [sliders, setSliders] = useState([
-        { id: 'x', name: 'X Value', value: 50 },
-        { id: 'y', name: 'Y Value', value: 50 }
+        { id: 'x', name: xLabel.oneWordDescription, value: 50 },
+        { id: 'y', name: yLabel.oneWordDescription, value: 50 }
     ])
     const [visualSliders, setVisualSliders] = useState([
-        { id: 'x', name: 'X Value', value: 50 },
-        { id: 'y', name: 'Y Value', value: 50 }
+        { id: 'x', name: xLabel.oneWordDescription, value: 50 },
+        { id: 'y', name: yLabel.oneWordDescription, value: 50 }
     ])
     const [newSliderName, setNewSliderName] = useState('')
     const [isAddingSlider, setIsAddingSlider] = useState(false)
@@ -140,15 +143,15 @@ export default function ScatterPlotWithGridLayout({ data }: Props) {
         []
     )
 
-    const handleAddSlider = () => {
-        if (newSliderName.trim()) {
-            const newId = `slider-${sliders.length}`
-            setSliders([...sliders, { id: newId, name: newSliderName.trim(), value: 50 }])
-            setVisualSliders([...visualSliders, { id: newId, name: newSliderName.trim(), value: 50 }])
-            setNewSliderName('')
-            setIsAddingSlider(false)
-        }
-    }
+    // const handleAddSlider = () => {
+    //     if (newSliderName.trim()) {
+    //         const newId = `slider-${sliders.length}`
+    //         setSliders([...sliders, { id: newId, name: newSliderName.trim(), value: 50 }])
+    //         setVisualSliders([...visualSliders, { id: newId, name: newSliderName.trim(), value: 50 }])
+    //         setNewSliderName('')
+    //         setIsAddingSlider(false)
+    //     }
+    // }
 
     return (
         <div className="w-full grid grid-cols-2 gap-4">
@@ -181,7 +184,7 @@ export default function ScatterPlotWithGridLayout({ data }: Props) {
                                     value={newSliderName}
                                     onChange={(e) => setNewSliderName(e.target.value)}
                                 />
-                                <Button onClick={handleAddSlider} className="mr-2">Done</Button>
+                                {/* <Button onClick={handleAddSlider} className="mr-2">Done</Button> */}
                                 <Button variant="outline" onClick={() => setIsAddingSlider(false)}>Cancel</Button>
                             </div>
                         ) : (
@@ -223,13 +226,13 @@ export default function ScatterPlotWithGridLayout({ data }: Props) {
                                     type="number"
                                     dataKey="x"
                                     name="X Axis"
-                                    label={{ value: "X Axis", position: 'bottom', offset: 0 }}
+                                    label={{ value: `${xLabel.negative}->${xLabel.positive}`, position: 'bottom', offset: 0 }}
                                 />
                                 <YAxis
                                     type="number"
                                     dataKey="y"
                                     name="Y Axis"
-                                    label={{ value: "Y Axis", angle: -90, position: 'left' }}
+                                    label={{ value: `${yLabel.negative}->${yLabel.positive}`, angle: -90, position: 'left' }}
                                 />
                                 <Tooltip content={<CustomTooltip />} />
                                 <Scatter
