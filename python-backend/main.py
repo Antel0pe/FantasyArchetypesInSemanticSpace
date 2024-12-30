@@ -205,6 +205,7 @@ class PCAComponent(BaseModel):
 class PCAResponse(BaseModel):
     components: List[PCAComponent]
     total_explained_variance: float
+    transformed_data: List[List[float]]
 
 @app.post("/pca", response_model=PCAResponse)
 async def reduce_dimensions(params: PCAParams):
@@ -238,7 +239,7 @@ async def reduce_dimensions(params: PCAParams):
             n_components=params.n_components,
             random_state=params.random_state
         )
-        pca.fit(embeddings_array)
+        transformed_data = pca.fit_transform(embeddings_array)
         
         # Create list of components with their explained variance ratios
         components_with_ratios = [
@@ -263,7 +264,8 @@ async def reduce_dimensions(params: PCAParams):
         
         return PCAResponse(
             components=components_with_ratios,
-            total_explained_variance=total_variance
+            total_explained_variance=total_variance,
+            transformed_data=transformed_data.tolist(),
         )
         
     except ValueError as ve:

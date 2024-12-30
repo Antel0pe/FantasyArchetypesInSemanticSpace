@@ -13,7 +13,9 @@ npm run dev
 Backend
 ```
 cd python-backend
-flaskapi dev main.py
+conda install --file requirements.txt
+conda activate env
+fastapi dev main.py
 ```
 
 Check out localhost:3000

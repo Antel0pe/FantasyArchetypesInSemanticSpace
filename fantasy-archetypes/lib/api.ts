@@ -1,3 +1,7 @@
+import OpenAI from "openai";
+import { z } from "zod";
+import { zodResponseFormat } from "openai/helpers/zod";
+import { JSONParseError } from "ai";
 
 export interface GeneratedResponse {
     leftSuggestions: string[];
@@ -70,3 +74,39 @@ export async function getUMAPCoordinates(params: UMAPParams): Promise<Point[]> {
     }
 }
 
+export interface DataPoint {
+    text: string;
+    x: string;
+}
+
+export interface AxisInterpretation {
+    positive: string;
+    negative: string;
+    oneWordDescription: string;
+}
+
+export async function getAxisInterpretation(data: DataPoint[]): Promise<AxisInterpretation> {
+    try {
+        const response = await fetch('/api/get-axis-labels', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to get interpretation');
+        }
+
+        return await response.json();
+
+    } catch (error) {
+        console.error('Error getting axis interpretation:', error);
+        return {
+            negative: '',
+            positive: '',
+            oneWordDescription: ''
+        };
+    }
+}

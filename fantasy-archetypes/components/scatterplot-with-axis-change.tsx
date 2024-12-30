@@ -1,24 +1,13 @@
 "use client"
 
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useCallback } from "react"
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ResponsiveContainer, Tooltip } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ChartContainer, type ChartConfig } from "@/components/ui/chart"
-
-// Mock data for the scatter plot
-const data = [
-    { x: 10, y: 30, name: "Point A", category: "Group 1" },
-    { x: 40, y: 50, name: "Point B", category: "Group 1" },
-    { x: 70, y: 20, name: "Point C", category: "Group 2" },
-    { x: 30, y: 80, name: "Point D", category: "Group 2" },
-    { x: 50, y: 60, name: "Point E", category: "Group 3" },
-    { x: 80, y: 40, name: "Point F", category: "Group 3" },
-    { x: 20, y: 70, name: "Point G", category: "Group 1" },
-    { x: 60, y: 10, name: "Point H", category: "Group 2" },
-]
+import debounce from 'debounce';
 
 const chartConfig = {
     desktop: {
@@ -51,7 +40,7 @@ const CustomTooltip = ({ active, payload }: { active?: boolean; payload?: any[] 
     return null
 }
 
-interface PointData {
+export interface PointData {
     x: number,
     y: number,
     name: string,
@@ -67,56 +56,109 @@ export default function ScatterPlotWithGridLayout({ data }: Props) {
         { id: 'x', name: 'X Value', value: 50 },
         { id: 'y', name: 'Y Value', value: 50 }
     ])
+    const [visualSliders, setVisualSliders] = useState([
+        { id: 'x', name: 'X Value', value: 50 },
+        { id: 'y', name: 'Y Value', value: 50 }
+    ])
     const [newSliderName, setNewSliderName] = useState('')
     const [isAddingSlider, setIsAddingSlider] = useState(false)
 
-    const selectedPoint = useMemo(() => {
-        const [xSlider, ySlider] = sliders
-        return data.reduce((closest, point) => {
-            const distance = Math.sqrt(Math.pow(point.x - xSlider.value, 2) + Math.pow(point.y - ySlider.value, 2))
-            if (!closest || distance < closest.distance) {
-                return { ...point, distance }
+
+    const dataRanges = useMemo(() => {
+        const xValues = data.map(p => p.x);
+        const yValues = data.map(p => p.y);
+        return {
+            x: {
+                min: Math.min(...xValues),
+                max: Math.max(...xValues)
+            },
+            y: {
+                min: Math.min(...yValues),
+                max: Math.max(...yValues)
             }
-            return closest
-        }, null as (typeof data[0] & { distance: number }) | null)
-    }, [sliders])
+        };
+    }, [data]);
+
+    const selectedPoint = useMemo(() => {
+        const [xSlider, ySlider] = sliders;
+
+        return data.reduce((closest, point) => {
+            // Convert point coordinates to percentages (0-1)
+            const xPercent = (point.x - dataRanges.x.min) / (dataRanges.x.max - dataRanges.x.min);
+            const yPercent = (point.y - dataRanges.y.min) / (dataRanges.y.max - dataRanges.y.min);
+
+            // Convert slider values to percentages (0-1)
+            const targetXPercent = xSlider.value / 100;
+            const targetYPercent = ySlider.value / 100;
+
+            // Calculate distance between percentages
+            const distance = Math.sqrt(
+                Math.pow(xPercent - targetXPercent, 2) +
+                Math.pow(yPercent - targetYPercent, 2)
+            );
+
+            if (!closest || distance < closest.distance) {
+                return { ...point, distance };
+            }
+            return closest;
+        }, null as (typeof data[0] & { distance: number }) | null);
+    }, [sliders, dataRanges, data]); // Added missing data dependency
 
     const customizedData = useMemo(() => {
-        const [xSlider, ySlider] = sliders
-        return data.map(point => ({
-            ...point,
-            fill: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? "var(--color-mobile)" : "var(--color-desktop)",
-            stroke: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? "var(--color-mobile)" : "var(--color-desktop)",
-            strokeWidth: point.x === selectedPoint?.x && point.y === selectedPoint?.y ? 2 : 0,
-        }))
+        const selectedKey = selectedPoint ? `${selectedPoint.x}-${selectedPoint.y}` : null;
+
+        return data.map(point => {
+            const isSelected = selectedKey === `${point.x}-${point.y}`;
+            return {
+                ...point,
+                fill: isSelected ? '#FF0000' : '#0000FF',
+                stroke: isSelected ? '#FF0000' : '#0000FF',
+                strokeWidth: isSelected ? 2 : 0,
+            };
+        });
     }, [selectedPoint, sliders])
 
     const handleSliderChange = (id: string, newValue: number) => {
-        setSliders(prevSliders =>
-            prevSliders.map(slider =>
-                slider.id === id ? { ...slider, value: newValue } : slider
-            )
+        // Update visual state immediately
+        setVisualSliders(prev =>
+            prev.map(s => s.id === id ? { ...s, value: newValue } : s)
         )
+
+        // Debounce the expensive calculation
+        debouncedUpdateClosestPoint(id, newValue)
     }
+
+    // Create debounced function for updating the actual state
+    const debouncedUpdateClosestPoint = useCallback(
+        debounce((id: string, newValue: number) => {
+            setSliders(prevSliders =>
+                prevSliders.map(slider =>
+                    slider.id === id ? { ...slider, value: newValue } : slider
+                )
+            )
+        }, 50),
+        []
+    )
 
     const handleAddSlider = () => {
         if (newSliderName.trim()) {
             const newId = `slider-${sliders.length}`
             setSliders([...sliders, { id: newId, name: newSliderName.trim(), value: 50 }])
+            setVisualSliders([...visualSliders, { id: newId, name: newSliderName.trim(), value: 50 }])
             setNewSliderName('')
             setIsAddingSlider(false)
         }
     }
 
     return (
-        <div className="w-full max-w-5xl grid grid-cols-2 gap-4">
+        <div className="w-full grid grid-cols-2 gap-4">
             <Card className="col-span-1">
                 <CardHeader>
                     <CardTitle>Adjust Values</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div className="space-y-4">
-                        {sliders.map(slider => (
+                        {visualSliders.map(slider => (
                             <div key={slider.id}>
                                 <label htmlFor={slider.id} className="block text-sm font-medium text-gray-700 mb-1">
                                     {slider.name}: {slider.value}
@@ -181,14 +223,12 @@ export default function ScatterPlotWithGridLayout({ data }: Props) {
                                     type="number"
                                     dataKey="x"
                                     name="X Axis"
-                                    domain={[0, 100]}
                                     label={{ value: "X Axis", position: 'bottom', offset: 0 }}
                                 />
                                 <YAxis
                                     type="number"
                                     dataKey="y"
                                     name="Y Axis"
-                                    domain={[0, 100]}
                                     label={{ value: "Y Axis", angle: -90, position: 'left' }}
                                 />
                                 <Tooltip content={<CustomTooltip />} />
