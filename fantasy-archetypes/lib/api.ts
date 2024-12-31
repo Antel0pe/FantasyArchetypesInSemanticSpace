@@ -102,7 +102,7 @@ export async function getAxisInterpretation(data: DataPoint[]): Promise<AxisInte
         return await response.json();
 
     } catch (error) {
-        console.error('Error getting axis interpretation:', error);
+        console.log('Error getting axis interpretation:', error);
         return {
             negative: '',
             positive: '',

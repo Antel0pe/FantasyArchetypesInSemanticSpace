@@ -232,7 +232,7 @@ async def reduce_dimensions(params: PCAParams):
         
         # Determine n_components if not specified
         if params.n_components is None:
-            params.n_components = min(embeddings_array.shape)
+            params.n_components = min(15, embeddings_array.shape[0])
         
         # Initialize and fit PCA
         pca = PCA(

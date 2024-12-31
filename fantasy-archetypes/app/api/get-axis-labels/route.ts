@@ -45,8 +45,10 @@ export async function POST(request: Request) {
             Coordinate Data:
             ${JSON.stringify(items)}`
         });
-
-        return (await completion).toJsonResponse();
+        let res = await completion;
+        console.log('from openai')
+        console.log(res)
+        return res.toJsonResponse();
     } catch (error) {
         console.error('Error getting axis interpretation:', error);
         return NextResponse.json(
